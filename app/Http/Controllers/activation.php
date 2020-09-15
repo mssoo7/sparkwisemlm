@@ -39,7 +39,13 @@ class activation extends Controller
 
        if($userCheck){
 
-           echo "User Exists";
+        $getID=DB::table('user')->where('email',$email)->orwhere('mobile',$mobile)->select('id','index_no')->get();
+
+        $userid=$getID[0]->id;
+        $index_no=$getID[0]->index_no;
+
+        $checkOrder=DB::table('shoping_income')->where('userid',$userid)->
+           
 
 
        }
@@ -141,7 +147,7 @@ class activation extends Controller
 
 
 
-
+//hello
 
         // $this->last=end($this->result);
   
