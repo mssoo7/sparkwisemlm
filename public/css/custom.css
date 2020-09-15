@@ -1,0 +1,258 @@
+.action-btn
+{
+  bottom: 0px;
+  position: absolute;
+  right: 12px;
+  margin: 10px;
+}
+.card
+{
+  margin-bottom: unset;
+}
+.row
+{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+  .profile-pic {
+      max-width: 100%;
+      
+      display: block;
+  }
+
+  .file-upload {
+      display: none;
+  }
+  .circle {
+      border-radius: 1000px !important;
+      overflow: hidden;
+      width: 128px;
+      height: 128px;
+      border: 2px solid rgb(208, 83, 10);
+      /*position: absolute;
+      top: 72px;*/
+  }
+  img {
+      max-width: 100%;
+      height: auto;
+  }
+  .p-image {
+    position: absolute;
+    top: 70px;
+    left: 190px;
+    color: #666666;
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  }
+  .p-image:hover {
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  }
+  .upload-button {
+    font-size: 1.2em;
+  }
+
+  .upload-button:hover {
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+    color: #999;
+  }
+  .user-heading {width: 100%; text-align: center; margin: 10px 0 0;}
+  .input-group-addon{padding-top:8px; min-width: 35px; font-size: 21px;}
+
+  .tree
+  {
+      overflow: auto !important;
+  }
+
+  /*Now the CSS*/
+* {margin: 0; padding: 0;}
+
+.tree ul {
+  padding-top: 20px; 
+  position: relative;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+.tree li {
+  float: left; text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px;
+  
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+.tree li::before, .tree li::after{
+  content: '';
+  position: absolute; top: 0; right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%; height: 20px;
+}
+.tree li::after{
+  right: auto; left: 50%;
+  border-left: 1px solid #ccc;
+}
+
+.tree li:only-child::after, .tree li:only-child::before {
+  display: none;
+}
+
+.tree li:only-child{ padding-top: 0;}
+.tree li:first-child::before, .tree li:last-child::after{
+  border: 0 none;
+}
+
+.tree li:last-child::before{
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after{
+  border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+}
+
+.tree ul ul::before{
+  content: '';
+  position: absolute; top: 0; left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0; height: 20px;
+}
+
+.tree li a{
+
+  height: 100px;
+  width: 100px;
+  border: 1px solid #ccc;
+  padding: 8px 8px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size:10px;
+  display: inline-block;
+  
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+.tree li .root-user{
+
+  border: 1px solid #ccc;
+  padding: 10px 10px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 10px;
+  display: inline-block;
+  
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+.tree li a:hover, .tree li a:hover+ul li a {
+  background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+}
+
+.tree li a:hover+ul li::after, 
+.tree li a:hover+ul li::before, 
+.tree li a:hover+ul::before, 
+.tree li a:hover+ul ul::before{
+  border-color:  #94a0b4;
+}
+
+.tree 
+{
+    display: grid;
+    align-items: center;
+    
+}
+.card {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+		.onoffswitch3
+		{
+		    position: relative; 
+		    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+		}
+
+		.onoffswitch3-checkbox {
+		    display: none;
+		}
+
+		.onoffswitch3-label {
+		    display: block; overflow: hidden; cursor: pointer;
+		    border: 0px solid #999999; border-radius: 0px;
+		}
+
+		.onoffswitch3-inner {
+		    display: block; width: 200%; margin-left: -100%;
+		    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+		    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+		}
+
+		.onoffswitch3-inner > span {
+		    display: block; float: left; position: relative; width: 50%; height: 30px; padding: 0; line-height: 30px;
+		    font-size: 14px; color: white; font-family: 'Montserrat', sans-serif; font-weight: bold;
+		    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+		}
+
+		.onoffswitch3-inner .onoffswitch3-active {
+		    padding-left: 10px;
+		    background-color: #EEEEEE; color: #FFFFFF;
+		}
+
+		.onoffswitch3-inner .onoffswitch3-inactive {
+		    width: 100px;
+		    padding-left: 16px;
+		    background-color: #EEEEEE; color: #FFFFFF;
+		    text-align: right;
+		}
+
+		.onoffswitch3-switch {
+		    display: block; margin: 0px; text-align: center; 
+		    border: 0px solid #999999;border-radius: 0px; 
+		    position: absolute; top: 0; bottom: 0;
+		}
+		.onoffswitch3-active .onoffswitch3-switch {
+		    background: #27A1CA; left: 0;
+		    /*width: 160px;*/
+		    padding: 0px 6px 0px 6px;
+		}
+		.onoffswitch3-inactive{
+		    background: #A1A1A1; right: 0;
+		    width: 20px;
+		}
+		.onoffswitch3-checkbox:checked + .onoffswitch3-label .onoffswitch3-inner {
+		    margin-left: 0;
+		}
+
+		.fa-remove{
+		    padding: 3px 0px 0px 0px;
+		    color: #fff;
+		    background-color: #000;
+		    height: 25px;
+		    width: 25px;
+		    border-radius: 15px;
+		    border: 2px solid #fff;
+		}
+
+		.scroll-text{
+		    color: #000;
+		}
