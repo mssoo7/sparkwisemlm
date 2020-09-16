@@ -66,7 +66,12 @@
 			  <!-- small box -->
 			  <div class="small-box bg-warning">
 				<div class="inner">
-					<h3>150<sup style="font-size: 20px"> <i class="fa {{$global_currency}}"></i></sup></h3>
+					<h3> @if ($eh_wallet == 0)
+						0.00
+					@else
+					{{$eh_wallet}}
+					@endif
+					  <sup style="font-size: 20px"> <i class="fa {{$global_currency}}"></i></sup></h3>
   
 				  <p>EH-Wallet</p>
 				</div>
@@ -81,7 +86,12 @@
 			  <!-- small box -->
 			  <div class="small-box bg-warning">
 				<div class="inner">
-					<h3>150<sup style="font-size: 20px"> <i class="fa {{$global_currency}}"></i></sup></h3>
+					<h3> @if ($h_wallet == 0)
+						0.00
+					@else
+					{{$h_wallet}}
+					@endif
+					  <sup style="font-size: 20px"> <i class="fa {{$global_currency}}"></i></sup></h3>
   
 				  <p>H-Wallet</p>
 				</div>
@@ -96,7 +106,12 @@
 			  <!-- small box -->
 			  <div class="small-box bg-danger">
 				<div class="inner">
-					<h3>150<sup style="font-size: 20px"> <i class="fa {{$global_currency}}"></i></sup></h3>
+					<h3> @if ($lost_wallet == 0)
+						0.00
+					@else
+					{{$lost_wallet}}
+					@endif
+					  <sup style="font-size: 20px"> <i class="fa {{$global_currency}}"></i></sup></h3>
   
 				  <p>Lost Wallet</p>
 				</div>

@@ -6,7 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 class Index extends Component
 {
-public $e_wallet;
+public $e_wallet,$h_wallet,$eh_wallet,$lost_wallet;
     public function render()
     {
         $id=session()->get('u_auto_id');
@@ -16,7 +16,10 @@ public $e_wallet;
         // dd($user_data);
         foreach($user_data as $row)
         {
-        $this->e_wallet=$row->main_wallet;
+        $this->e_wallet=$row->e_wallet;
+        $this->h_wallet=$row->hold_wallet;
+        $this->eh_wallet=$row->eh_wallet;
+        $this->lost_wallet=$row->lost_wallet;
         }
 
         return view('livewire.user.index');

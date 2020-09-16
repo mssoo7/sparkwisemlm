@@ -25,8 +25,18 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
+@if (session()->has('Renewmsg'))
 
-{{-- hello --}}
+{{session('Renewmsg')}}
+    
+@endif
+@if (session()->has('newmsg'))
+
+{{session('newmsg')}}
+    
+@endif
+
+
     </div>
     
 </body>
