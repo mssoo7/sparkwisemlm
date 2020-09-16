@@ -434,7 +434,7 @@
             <li class="nav-item">
               <a href="{{url('income/user/incomedirect')}}" class="nav-link">
                 <i class="nav-icon fas fa-file-invoice text-warning"></i>
-                <p>Direct Income</p>
+                <p>Fast Start Income</p>
               </a>
             </li>
           </ul>
@@ -442,7 +442,7 @@
             <li class="nav-item">
               <a href="{{url('income/user/incomebinary')}}" class="nav-link">
                 <i class="nav-icon fas fa-file-invoice text-warning"></i>
-                <p>Binary Income</p>
+                <p>Pass Up Income</p>
               </a>
             </li>
           </ul>
@@ -450,7 +450,7 @@
             <li class="nav-item">
               <a href="{{url('income/user/incomeautopool')}}" class="nav-link">
                 <i class="nav-icon fas fa-file-invoice text-warning"></i>
-                <p>Autopool Income</p>
+                <p>Leadership Bouns</p>
               </a>
             </li>
           </ul>
@@ -458,18 +458,18 @@
             <li class="nav-item">
               <a href="{{url('income/user/incomepoint')}}" class="nav-link">
                 <i class="nav-icon fas fa-file-invoice text-warning"></i>
-                <p>Point Income</p>
+                <p>Team Size Bonus</p>
               </a>
             </li>
           </ul>
-          <ul class="nav nav-treeview">
+          {{-- <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('income/user/incomecmc')}}" class="nav-link">
                 <i class="nav-icon fas fa-file-invoice text-warning"></i>
                 <p>CMC Income</p>
               </a>
             </li>
-          </ul>
+          </ul> --}}
           <!-- <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="#" class="nav-link">

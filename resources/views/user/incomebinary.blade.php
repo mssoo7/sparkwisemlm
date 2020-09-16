@@ -4,7 +4,7 @@
     
 @section('content')
 
-@livewire('user.headings', ['heading_name'=>'Binary Income', 'page_name'=>'Binary Income'])
+@livewire('user.headings', ['heading_name'=>'Pass Up Income', 'page_name'=>'Pass Up Income'])
 
 <livewire:user.incomebinary />
     
