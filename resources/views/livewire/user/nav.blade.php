@@ -36,9 +36,15 @@
       
         <div style="text-transform: uppercase;">
                
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-times-circle text-danger"><strong> {{$status}}</strong></i><br>
-            {{$leftDays}}
+          <a href="#" class="nav-link"> 
+             @if ($renew_status==1)
+             <i class="nav-icon fas fa-check-circle text-success"><strong> Active </strong></i> 
+             <br>
+          <small class="text-danger">Expire in:<strong> {{$leftDays}} days</small></strong>  
+                 @else   
+                 <i class="nav-icon fas fa-times-circle text-danger"><strong> Expired </strong></i>  
+             @endif
+            
           </a>
               </div>
       
@@ -79,7 +85,7 @@
               <div class="info">
                 <a style="text-transform: uppercase; color: #000 !important; font-weight: 600; text-align:center" href="#" class="d-block">{{$name}}
                   <br>
-                  <small><i class="fa fa-rupee-sign"></i>{{$e_wallet}}</small></a>
+                  <small><i class="fa fa-rupee-sign"></i>{{$Ewallet}}</small></a>
                 
               </div>
               {{-- <div class="image" style="padding-left: 0;">

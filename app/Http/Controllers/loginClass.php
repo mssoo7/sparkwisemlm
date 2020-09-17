@@ -23,6 +23,7 @@ class loginClass extends Controller
             $req->session()->put('user_id',$item->userid);
             $req->session()->put('user_name',$item->name);
             $req->session()->put('u_auto_id',$item->id);
+            
                     }         
 
             return redirect('/dashboard');
