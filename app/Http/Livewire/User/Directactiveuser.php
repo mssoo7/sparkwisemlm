@@ -17,7 +17,7 @@ class Directactiveuser extends Component
     {
         $id=session()->get('u_auto_id');
 
-        $data['myteam']=DB::table('user')->where('under_team_id',$id)->where('renew_status',1)->where(function ($query) {
+        $data['myteam']=DB::table('user')->where('under_team_id',$id)->where('status','Active')->where(function ($query) {
             $query->where('name','like','%'.$this->search.'%')
             ->orwhere('status','like','%'.$this->search.'%');
             })

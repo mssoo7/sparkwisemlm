@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\DB;
 class activation extends Controller
 {
   
-  
 
     public function operation(Request $req){
-       
+
+
        $name= $req->input('name');
        $mobile= $req->input('mobile');
        $email= $req->input('email');
@@ -29,6 +29,9 @@ class activation extends Controller
        ->orwhere('mobile',$mobile)->exists();
 
        if($userCheck){
+           
+        DB::beginTransaction();
+        try {
 
         // Getting User All Details
         $getID=DB::table('user')->where('email',$email)->orwhere('mobile',$mobile)->select('id','index_no','sponsor_id','renew_status','hold_wallet','holding_status','e_wallet','mebership_days')->get();
@@ -70,6 +73,7 @@ class activation extends Controller
             $last_no=end($index_array);
             $while_status = true;
 
+            
            
             if($last_no < $index_no){   // 11< big no
 
@@ -110,6 +114,14 @@ class activation extends Controller
 
                         if($holding_status==1){
 
+                            DB::table('business_income')->insert([
+                                'userid'=>$userid,
+                                'amount'=>$holding_wallet,
+                                'wallet_type'=>"E-Wallet",
+                                'date'=>date('Y-m-d h:i:s'),
+                                'trans_type'=>'Credit'
+                            ]);
+
                             DB::table('user')->where('id',$userid)->update([
 
                                 'e_wallet'=>$Ewallet+$holding_wallet,
@@ -118,6 +130,7 @@ class activation extends Controller
                                 'hold_wallet_days'=>0,
                                 'holding_status'=>0
                              ]);
+
                         }else{
 
                             DB::table('user')->where('id',$userid)->update([
@@ -222,6 +235,14 @@ class activation extends Controller
                                ]);
 
                             if($holding_status==1){
+
+                                DB::table('business_income')->insert([
+                                    'userid'=>$userid,
+                                    'amount'=>$holding_wallet,
+                                    'wallet_type'=>"E-Wallet",
+                                    'date'=>date('Y-m-d h:i:s'),
+                                    'trans_type'=>'Credit'
+                                ]);
     
                                 DB::table('user')->where('id',$userid)->update([
     
@@ -296,7 +317,6 @@ class activation extends Controller
                 }
 
             }
-            dd($renew_status);   
          }
 
             }
@@ -329,6 +349,14 @@ class activation extends Controller
                                ]);
 
                             if($holding_status==1){
+
+                                DB::table('business_income')->insert([
+                                    'userid'=>$userid,
+                                    'amount'=>$holding_wallet,
+                                    'wallet_type'=>"E-Wallet",
+                                    'date'=>date('Y-m-d h:i:s'),
+                                    'trans_type'=>'Credit'
+                                ]);
     
                                 DB::table('user')->where('id',$userid)->update([
     
@@ -444,6 +472,14 @@ class activation extends Controller
 
                     if($holding_status==1){
 
+                        DB::table('business_income')->insert([
+                            'userid'=>$userid,
+                            'amount'=>$holding_wallet,
+                            'wallet_type'=>"E-Wallet",
+                            'date'=>date('Y-m-d h:i:s'),
+                            'trans_type'=>'Credit'
+                        ]);
+
                         DB::table('user')->where('id',$userid)->update([
 
                             'e_wallet'=>$Ewallet+$holding_wallet,
@@ -530,12 +566,24 @@ class activation extends Controller
  
         }
 
+       DB::commit();
+
+     
        session()->flash('Renewmsg',"Succssfully Renewed");
+
+   } catch (\Exception $e) {
+       DB::rollback();
+
+       session()->flash('newmsg',"Somthings went Wrong!");
+   }
     
     }
 
 // user Acticvation
        else{
+
+        DB::beginTransaction();
+        try {
 
            $getSponserId=DB::table('user')->where('userid',$sponserid)->select('id')->get();
 
@@ -656,10 +704,23 @@ class activation extends Controller
                 }
              
             }
+
+            DB::commit();
+
             session()->flash('newmsg',"Product Purchased Succsessfully!");
+    
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            session()->flash('newmsg',"Somthings went Wrong!");
+        }
+        
+
+            
 
         }
 
+   
      return redirect('/activation'); 
      
     }

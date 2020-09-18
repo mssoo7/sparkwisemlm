@@ -39,7 +39,7 @@
               $i=1
             
           @endphp
-          @foreach ($myteam as $value)
+          @forelse ($myteam as $value)
     
             <tr>
               <td>{{$i++}}</td>
@@ -47,8 +47,12 @@
               <td>{{$value->status}}</td>
              
             </tr>
+            @empty
+            <tr>
+                <td colspan="3" class="text-center text-danger">No Records Here..</td>
+              </tr>
             
-          @endforeach
+          @endforelse
         </tbody>  
         </table>
         <div>

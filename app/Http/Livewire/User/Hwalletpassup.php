@@ -5,29 +5,27 @@ namespace App\Http\Livewire\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
-
-class Mydownline extends Component
-{
+class Hwalletpassup extends Component
+{ 
     use WithPagination;
-    public $sortBy = 'name';
+    public $sortBy = 'id';
     public $sortDirection = 'asc';
     public $search = '';
     public $perPage=10;
-
     public function render()
     {
         $id=session()->get('u_auto_id');
-
-        $data['myteam']=DB::table('user')->where('under_team_id',$id)->where(function ($query) {
-            $query->where('name','like','%'.$this->search.'%')
-            ->orwhere('renew_status','like','%'.$this->search.'%');
+       
+        $data['businessIncome']=DB::table('business_income')->where('userid',$id)->where('wallet_type','H-Wallet')->where(function ($query) {
+            $query->where('amount','like','%'.$this->search.'%')
+            ->orWhere('date','like','%'.$this->search.'%');
             })
             ->orderBy($this->sortBy,$this->sortDirection) 
             ->paginate($this->perPage);
 
-        return view('livewire.user.mydownline',$data);
+    
+        return view('livewire.user.hwalletpassup');
     }
-
     public function sortBy($field)
     {
         if ($this->sortDirection == 'asc') {

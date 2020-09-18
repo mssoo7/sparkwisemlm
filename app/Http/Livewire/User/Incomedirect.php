@@ -20,6 +20,7 @@ class Incomedirect extends Component
             $query->where('user_name','like','%'.$this->search.'%')
             ->orWhere('comission','like','%'.$this->search.'%')
             ->orWhere('amount','like','%'.$this->search.'%')
+            ->orWhere('wallet_type','like','%'.$this->search.'%')
             ->orWhere('date','like','%'.$this->search.'%');
             })
             ->orderBy($this->sortBy,$this->sortDirection) 

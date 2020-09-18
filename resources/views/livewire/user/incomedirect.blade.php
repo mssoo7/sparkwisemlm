@@ -35,6 +35,9 @@
               <th wire:click="sortBy('comission')">Income Amt.
                 @include('partials.sort-icon',['field'=>'comission'])
               </th>
+              <th wire:click="sortBy('wallet_type')">Wallet Type
+                @include('partials.sort-icon',['field'=>'wallet_type'])
+              </th>
               <th wire:click="sortBy('date')">Date
                 @include('partials.sort-icon',['field'=>'date'])
               </th>
@@ -47,11 +50,12 @@
           @endphp
           @foreach ($shoppingincome as $value)
     
-            <tr>
+            <tr class="@if($value->wallet_type =='e_wallet') bg-success @else bg-warning @endif ">
               <td>{{$i++}}</td>
               <td>{{$value->user_name}}</td>
               <td>{{$value->amount}}</td>
               <td>{{$value->comission}}</td>
+              <td class="text-capitalize">{{str_replace("_"," ",$value->wallet_type)}}</td>
               <td>{{$value->date}}</td>
             </tr>
             

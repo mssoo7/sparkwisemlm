@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 // User Routing
 Route::view('/', 'login');
 Route::view('/ewallets','user.ewallet');
+Route::view('/hwallets','user.hwallet');
+Route::view('/hwalletfaststart','user.hwalletfaststart');
+Route::view('/hwalletpassup','user.hwalletpassup');
+
 Route::view('/dashboard', 'user.index');
 Route::post('/loginform', 'loginClass@Login_button');
 Route::view('/user/register', 'registration');

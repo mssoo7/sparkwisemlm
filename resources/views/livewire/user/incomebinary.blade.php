@@ -49,9 +49,9 @@
             $i=1
           
         @endphp
-        @foreach ($shoppingincome as $value)
+        @forelse ($shoppingincome as $value)
   
-          <tr>
+          <tr class="@if($value->wallet_type=='e_wallet') bg-success @else bg-warning @endif">
             <td>{{$i++}}</td>
             <td>{{$value->user_name}}</td>
             <td>{{$value->sponser_name}}</td>
@@ -59,8 +59,12 @@
             <td>{{$value->comission}}</td>
             <td>{{$value->date}}</td>
           </tr>
+          @empty
+          <tr>
+              <td colspan="6" class="text-center text-danger">No Records Here..</td>
+            </tr>
           
-        @endforeach
+        @endforelse
       </tbody>  
       </table>
       <div>
