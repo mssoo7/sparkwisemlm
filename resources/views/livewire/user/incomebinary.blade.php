@@ -1,6 +1,4 @@
 <div>
-
-
     <div class="table-wrapper container">
       <div class="row mb-4">
         <div class="col form-inline">
@@ -14,15 +12,12 @@
                 <option>100</option>
             </select>
         </div>
-
         <div class="col">
           <div style="width: 45%; float:right;">
             <input wire:model.debounce.300ms="search" class="form-control" type="text" placeholder="Search...">
           </div>
         </div>
-
     </div>
-
       <table class="table table-bordered">
         <thead class="thead-dark ">
           <tr class="font-weight-bold">
@@ -47,61 +42,26 @@
         <tbody>
         @php
             $i=1
-          
         @endphp
         @forelse ($shoppingincome as $value)
-  
           <tr class="@if($value->wallet_type=='e_wallet') bg-success @else bg-warning @endif">
             <td>{{$i++}}</td>
             <td>{{$value->user_name}}</td>
             <td>{{$value->sponser_name}}</td>
             <td>{{$value->amount}}</td>
             <td>{{$value->comission}}</td>
-            <td>{{$value->date}}</td>
+            <td>{{date('M d, Y h:i A', strtotime($value->date))}}</td>
           </tr>
           @empty
           <tr>
               <td colspan="6" class="text-center text-danger">No Records Here..</td>
             </tr>
-          
         @endforelse
       </tbody>  
       </table>
       <div>
-
-        <p>
-            Showing {{$shoppingincome->firstItem()}} to {{$shoppingincome->lastItem()}} out of {{$shoppingincome->total()}} items
-        </p>
-        <p>
-
-          {{$shoppingincome->links()}}
-        </p>
+        <p>Showing {{$shoppingincome->firstItem()}} to {{$shoppingincome->lastItem()}} out of {{$shoppingincome->total()}} items</p>
+        <p>{{$shoppingincome->links()}}</p>
     </div>
-  </div>
-
-    {{-- <table>
-        <tr>
-            <th>User Name</th>
-            <th>Sponser Name</th>
-            <th>Purchase Amt</th>
-            <th>Comission</th>
-            <th>Date</th>
-        </tr>
-        
-        <tr>
-          @forelse ($shoppingincome as $item)
-  
-            <td>{{$item->user_name}}</td>
-            <td>{{$item->sponser_name}}</td>
-            <td>{{$item->amount}}</td>
-            <td>{{$item->comission}}</td>
-            <td>{{$item->date}}</td>
-        @empty
-        
-          <td colspan="2">No Records Here..</td>
-          
-        @endforelse
-        </tr>
-    </table> --}}
-        
+  </div>      
 </div>

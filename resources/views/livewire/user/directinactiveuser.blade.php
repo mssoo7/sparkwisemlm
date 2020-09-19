@@ -12,15 +12,12 @@
                   <option>100</option>
               </select>
           </div>
-  
           <div class="col">
             <div style="width: 45%; float:right;">
               <input wire:model.debounce.300ms="search" class="form-control" type="text" placeholder="Search...">
             </div>
           </div>
-  
       </div>
-  
         <table class="table table-bordered">
           <thead class="thead-dark ">
             <tr class="font-weight-bold">
@@ -36,34 +33,23 @@
           <tbody>
           @php
               $i=1
-            
           @endphp
           @forelse($myteam as $value)
-    
             <tr>
               <td>{{$i++}}</td>
               <td>{{$value->name}}</td>
-              <td>{{$value->status}}</td>
-             
+              <td>@if ($value->renew_status==0) Hold @endif</td>
             </tr>
-
             @empty
             <tr>
-                <td colspan="3" class="text-center text-danger">No Records Here..</td>
-              </tr>
-            
+              <td colspan="3" class="text-center text-danger">No Records Here..</td>
+              </tr>  
           @endforelse
         </tbody>  
         </table>
         <div>
-  
-          <p>
-              Showing {{$myteam->firstItem()}} to {{$myteam->lastItem()}} out of {{$myteam->total()}} items
-          </p>
-          <p>
-  
-            {{$myteam->links()}}
-          </p>
+          <p>Showing {{$myteam->firstItem()}} to {{$myteam->lastItem()}} out of {{$myteam->total()}} items</p>
+          <p>{{$myteam->links()}}</p>
       </div>
     </div>
 </div>

@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class Directinactiveuser extends Component
 {
     use WithPagination;
-    public $sortBy = 'name';
+    public $sortBy ='name';
     public $sortDirection = 'asc';
     public $search = '';
     public $perPage=10;
@@ -17,16 +17,14 @@ class Directinactiveuser extends Component
     {
         $id=session()->get('u_auto_id');
 
-        $data['myteam']=DB::table('user')->where('under_team_id',$id)->where('status','Blocked')->where(function ($query) {
-            $query->where('name','like','%'.$this->search.'%')
-            ->orwhere('status','like','%'.$this->search.'%');
+        $data['myteam']=DB::table('user')->where('under_team_id',$id)->where('renew_status',0)->where(function ($query) {
+            $query->where('name','like','%'.$this->search.'%');
             })
             ->orderBy($this->sortBy,$this->sortDirection) 
             ->paginate($this->perPage);
 
         return view('livewire.user.directinactiveuser',$data);
     }
-
     public function sortBy($field)
     {
         if ($this->sortDirection == 'asc') {

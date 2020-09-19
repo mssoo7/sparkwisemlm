@@ -85,7 +85,7 @@
               <div class="info">
                 <a style="text-transform: uppercase; color: #000 !important; font-weight: 600; text-align:center" href="#" class="d-block">{{$name}}
                   <br>
-                  <small><i class="fa fa-rupee-sign"></i>{{$Ewallet}}</small></a>
+                  <small><i class="fa {{$global_currency}}"></i> {{$Ewallet}}</small></a>
                 
               </div>
               {{-- <div class="image" style="padding-left: 0;">
@@ -100,7 +100,7 @@
                 <i class="dropdown-icon fe fe-settings"></i> Change Password
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="logout.php" onclick="return confirm('Do you really want to log out?')">
+              <a class="dropdown-item" href="{{url('/user/logout')}}" onclick="return confirm('Do you really want to log out?')">
                 <i class="dropdown-icon fe fe-log-out"></i> Sign out
               </a>
             </div>

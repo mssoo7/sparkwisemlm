@@ -56,7 +56,7 @@
               <td>{{$value->amount}}</td>
               <td>{{$value->comission}}</td>
               <td class="text-capitalize">{{str_replace("_"," ",$value->wallet_type)}}</td>
-              <td>{{$value->date}}</td>
+              <td>{{date('M d, Y h:i A', strtotime($value->date))}}</td>
             </tr>
             
           @endforeach

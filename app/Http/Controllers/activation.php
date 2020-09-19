@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\DB;
 class activation extends Controller
 {
   
-
     public function operation(Request $req){
-
 
        $name= $req->input('name');
        $mobile= $req->input('mobile');
@@ -119,7 +117,9 @@ class activation extends Controller
                                 'amount'=>$holding_wallet,
                                 'wallet_type'=>"E-Wallet",
                                 'date'=>date('Y-m-d h:i:s'),
-                                'trans_type'=>'Credit'
+                                'trans_type'=>'Credit',
+                                'trans_status'=>1,
+                                'Remark' =>"Transfer H-Wallet To E-Wallet"
                             ]);
 
                             DB::table('user')->where('id',$userid)->update([
@@ -162,7 +162,8 @@ class activation extends Controller
                             'amount'=>$amount*(20/100),
                             'wallet_type'=>"E-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'Remark'=>"Pass Up Income"
                         ]);
 
                         DB::table('shoping_income')->where('id',$insertShoppingID)->update([
@@ -197,7 +198,8 @@ class activation extends Controller
                             'amount'=>$amount*(20/100),
                             'wallet_type'=>"H-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'Remark' =>"Pass Up Income"
                         ]);
 
                         
@@ -241,7 +243,10 @@ class activation extends Controller
                                     'amount'=>$holding_wallet,
                                     'wallet_type'=>"E-Wallet",
                                     'date'=>date('Y-m-d h:i:s'),
-                                    'trans_type'=>'Credit'
+                                    'trans_type'=>'Credit',
+                                    'trans_status'=>1,
+                                    'Remark' =>"Transfer H-Wallet To E-Wallet"
+
                                 ]);
     
                                 DB::table('user')->where('id',$userid)->update([
@@ -277,7 +282,8 @@ class activation extends Controller
                             'amount'=>$amount*(30/100),
                             'wallet_type'=>"E-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'Remark'=>"Pass Up Income"
                         ]);
 
                         DB::table('shoping_income')->where('id',$insertShoppingID)->update([
@@ -304,7 +310,8 @@ class activation extends Controller
                             'amount'=>$amount*(30/100),
                             'wallet_type'=>"H-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'Remark'=>"Pass Up Income"
                         ]);
 
                         
@@ -355,7 +362,9 @@ class activation extends Controller
                                     'amount'=>$holding_wallet,
                                     'wallet_type'=>"E-Wallet",
                                     'date'=>date('Y-m-d h:i:s'),
-                                    'trans_type'=>'Credit'
+                                    'trans_type'=>'Credit',
+                                    'trans_status'=>1,
+                                    'Remark' =>"Transfer H-Wallet To E-Wallet"
                                 ]);
     
                                 DB::table('user')->where('id',$userid)->update([
@@ -401,7 +410,8 @@ class activation extends Controller
                             'amount'=>$amount*(20/100),
                             'wallet_type'=>"E-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'Remark'=>"Pass Up Income"
                         ]);
 
 
@@ -432,7 +442,8 @@ class activation extends Controller
                             'amount'=>$amount*(20/100),
                             'wallet_type'=>"H-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'Remark'=>"Pass Up Income"
                         ]);
 
 
@@ -477,7 +488,9 @@ class activation extends Controller
                             'amount'=>$holding_wallet,
                             'wallet_type'=>"E-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'trans_status'=>1,
+                            'Remark' =>"Transfer H-Wallet To E-Wallet"
                         ]);
 
                         DB::table('user')->where('id',$userid)->update([
@@ -520,7 +533,8 @@ class activation extends Controller
                             'amount'=>$amount*(30/100),
                             'wallet_type'=>"E-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'Remark'=>"Pass Up Income"
                         ]);
 
                         DB::table('shoping_income')->where('id',$insertShoppingID)->update([
@@ -551,7 +565,8 @@ class activation extends Controller
                             'amount'=>$amount*(30/100),
                             'wallet_type'=>"H-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'Remark'=>"Pass Up Income"
                         ]);
 
                       
@@ -663,7 +678,8 @@ class activation extends Controller
                                 'amount'=>$comissoin,
                                 'wallet_type'=>"E-Wallet",
                                 'date'=>date('Y-m-d h:i:s'),
-                                'trans_type'=>'Credit'
+                                'trans_type'=>'Credit',
+                                'Remark'=>"Fast Start Income"
                             ]);
 
                           
@@ -696,7 +712,8 @@ class activation extends Controller
                             'amount'=>$comissoin,
                             'wallet_type'=>"H-Wallet",
                             'date'=>date('Y-m-d h:i:s'),
-                            'trans_type'=>'Credit'
+                            'trans_type'=>'Credit',
+                            'Remark'=>"Fast Start Income"
                         ]);
 
                        

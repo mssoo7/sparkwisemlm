@@ -21,7 +21,8 @@ class Historytransactionpage extends Component
             ->orWhere('wallet_type','like','%'.$this->search.'%')
             ->orWhere('amount','like','%'.$this->search.'%')
             ->orWhere('date','like','%'.$this->search.'%')
-            ->orWhere('trans_type','like','%'.$this->search.'%');
+            ->orWhere('trans_type','like','%'.$this->search.'%')
+            ->orWhere('Remark','like','%'.$this->search.'%');
             })
             ->orderBy($this->sortBy,$this->sortDirection) 
             ->paginate($this->perPage);

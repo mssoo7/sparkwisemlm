@@ -35,6 +35,9 @@
           <th wire:click="sortBy('trans_type')">Transaction Type
             @include('partials.sort-icon',['field'=>'trans_type'])
           </th>
+          <th wire:click="sortBy('Remark')">Remark
+            @include('partials.sort-icon',['field'=>'Remark'])
+          </th>
           <th wire:click="sortBy('date')">Date
             @include('partials.sort-icon',['field'=>'date'])
           </th>
@@ -52,6 +55,7 @@
           <td class="text-capitalize">{{str_replace("_"," ",$value->wallet_type)}}</td>
           <td>{{$value->amount}}</td>
           <td>{{$value->trans_type}}</td>
+          <td>{{$value->Remark}}</td>
           <td>{{date('M d, Y h:i A', strtotime($value->date))}}</td>
         </tr>
         @empty

@@ -4,27 +4,46 @@ namespace App\Http\Livewire\User;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 class Ewallet extends Component
 {
-    public $FatsUp,$PassUp;
+    use WithPagination;
+    public $sortBy = 'id';
+    public $sortDirection = 'desc';
+    public $search = '';
+    public $perPage=10;
+    public $e_wallet;
     public function render()
     {
         $id=session()->get('u_auto_id');
-        $Ewallet_FastUp=DB::table('shoping_income')->where('sponser_id',$id)->where('order_no',1)->where('wallet_type','e_wallet')->sum('comission');
-        $Ewallet_PassUp=DB::table('shoping_income')->where('under_team_id',$id)->where('order_no','>',1)->where('wallet_type','e_wallet')->sum('comission');
 
-        if($Ewallet_FastUp!=null){
-            $this->FatsUp=$Ewallet_FastUp;
-        }else{
-        $this->FatsUp=0.00;
+    
+        $eWallet=DB::table('user')->where('id',$id)->select('e_wallet')->get();
+            $this->e_wallet=$eWallet[0]->e_wallet;
+       
+        $data['businessIncome']=DB::table('business_income')->where('userid',$id)->where('wallet_type','E-Wallet')->where(function ($query) {
+            $query->where('amount','like','%'.$this->search.'%')
+            ->orWhere('Remark','like','%'.$this->search.'%')
+            ->orWhere('date','like','%'.$this->search.'%');
+            })
+            ->orderBy($this->sortBy,$this->sortDirection) 
+            ->paginate($this->perPage);
+
+        return view('livewire.user.ewallet',$data);
+    }
+    public function sortBy($field)
+    {
+        if ($this->sortDirection == 'asc') {
+            $this->sortDirection = 'desc';
+        } else {
+            $this->sortDirection = 'asc';
         }
-        if($Ewallet_PassUp!=null){
-            $this->PassUp=$Ewallet_PassUp;
-        }else{
-        $this->PassUp=0.00;
-        }
 
+        return $this->sortBy = $field;
+    }
 
-        return view('livewire.user.ewallet');
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }

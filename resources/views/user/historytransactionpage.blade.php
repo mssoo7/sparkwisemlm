@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title','Transaction History')
+@section('title','All Transaction')
     
 @section('content')
 
-@livewire('user.headings', ['heading_name'=>'Transaction History', 'page_name'=>'Transaction History'])
+@livewire('user.headings', ['heading_name'=>'All Transaction', 'page_name'=>'All Transaction'])
 
 <livewire:user.historytransactionpage />
     

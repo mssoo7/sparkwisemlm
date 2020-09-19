@@ -4,30 +4,58 @@ namespace App\Http\Livewire\User;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 class Hwallet extends Component
 {
+    use WithPagination;
+    public $sortBy = 'id';
+    public $sortDirection = 'desc';
+    public $search = '';
+    public $perPage=10;
   
-    public $FatsUp,$PassUp;
+    public $h_wallet;
     public function render()
     {
         $id=session()->get('u_auto_id');
 
     
-        $Ewallet_FastUp=DB::table('shoping_income')->where('sponser_id',$id)->where('order_no',1)->where('wallet_type','e_wallet')->sum('comission');
-        $Ewallet_PassUp=DB::table('shoping_income')->where('under_team_id',$id)->where('order_no','>',1)->where('wallet_type','e_wallet')->sum('comission');
+        $hWallet=DB::table('user')->where('id',$id)->select('hold_wallet')->get();
+            $this->h_wallet=$hWallet[0]->hold_wallet;
+       
+            
 
-        if($Ewallet_FastUp!=null){
-            $this->FatsUp=$Ewallet_FastUp;
-        }else{
-        $this->FatsUp=0.00;
-        }
-        if($Ewallet_PassUp!=null){
-            $this->PassUp=$Ewallet_PassUp;
-        }else{
-        $this->PassUp=0.00;
+        $data['businessIncome']=DB::table('business_income')->where('userid',$id)->where(function ($q1){   
+            $q1->where('wallet_type','H-Wallet')
+            ->orWhere('trans_status',1);
+                    })
+
+                     // this means SELECT * FROM `business_income` WHERE `userid`=$id AND (`wallet_type`="H-wallet" OR `trans_status`=1)"
+                     
+            ->where(function ($query) {
+            $query->where('amount','like','%'.$this->search.'%') 
+            ->orWhere('Remark','like','%'.$this->search.'%')
+            ->orWhere('date','like','%'.$this->search.'%');
+            })
+            ->orderBy($this->sortBy,$this->sortDirection) 
+            ->paginate($this->perPage);
+
+
+        return view('livewire.user.hwallet',$data);
+    }
+    public function sortBy($field)
+    {
+        if ($this->sortDirection == 'asc') {
+            $this->sortDirection = 'desc';
+        } else {
+            $this->sortDirection = 'asc';
         }
 
-        return view('livewire.user.hwallet');
+        return $this->sortBy = $field;
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 
 }

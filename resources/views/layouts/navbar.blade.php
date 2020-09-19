@@ -9,7 +9,7 @@
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #000428;">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
+  <a href="{{url('/dashboard')}}" class="brand-link">
     <img src="{{asset('dist/img/sparkwise.png')}}" alt="Spark Wise Logo" class="brand-image img-circle elevation-3"
          style="opacity: .8">
     <span class="brand-text font-weight-light">{{$company_name}}</span>
@@ -21,8 +21,8 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-             <li class="nav-header">DASHBOARD</li>
-             <li class="nav-item">
+             {{-- <li class="nav-header">DASHBOARD</li> --}}
+             <li class="nav-item has-treeview">
                <a href="{{url('/dashboard')}}" class="nav-link {{Request::is('dashboard') ? 'active' : ''}}">
                  <i class="nav-icon fas fa-tachometer-alt"></i>
                  <p>Dashboard</p>
@@ -45,16 +45,12 @@
                 <p>Profile</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('account-setting/user/kyc')}}" class="nav-link {{Request::is('account-setting/user/kyc') ? 'active' : ''}}">
                 <i class="nav-icon far fa-circle text-warning"></i>
                 <p>Kyc</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('account-setting/user/changepassword')}}" class="nav-link {{Request::is('account-setting/user/changepassword') ? 'active' : ''}}">
                 <i class="nav-icon far fa-circle text-warning"></i>
@@ -176,24 +172,18 @@
                 <p>Make New Withdrawal</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('withdrawl/user/withdrawlpending')}}" class="nav-link">
                 <i class="nav-icon far fa-circle text-warning"></i>
                 <p>Pending Withdrawals</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('withdrawl/user/withdrawlconfirm')}}" class="nav-link">
                 <i class="nav-icon far fa-circle text-warning"></i>
                 <p>Confirmed Withdrawals</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('withdrawl/user/withdrawlreject')}}" class="nav-link">
                 <i class="nav-icon far fa-circle text-warning"></i>
@@ -217,23 +207,19 @@
             <li class="nav-item">
               <a href="{{url('my-team/user/directactiveuser')}}" class="nav-link">
                 <i class="nav-icon far fa-circle text-warning"></i>
-                <p>Active Directs</p>
+                <p>Active Team</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('my-team/user/directinactiveuser')}}" class="nav-link">
                 <i class="nav-icon far fa-circle text-warning"></i>
-                <p>Inactive Directs</p>
+                <p>Inactive Team</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('my-team/user/mydownline')}}" class="nav-link">
                 <i class="nav-icon far fa-circle text-warning"></i>
-                <p>My Downline</p>
+                <p>My Team</p>
               </a>
             </li>
           </ul>
@@ -335,24 +321,18 @@
                 <p>Fast Start Income</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('income/user/incomebinary')}}" class="nav-link">
                 <i class="nav-icon fas fa-file-invoice text-warning"></i>
                 <p>Pass Up Income</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('income/user/incomeautopool')}}" class="nav-link">
                 <i class="nav-icon fas fa-file-invoice text-warning"></i>
                 <p>Leadership Bouns</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{url('income/user/incomepoint')}}" class="nav-link">
                 <i class="nav-icon fas fa-file-invoice text-warning"></i>
