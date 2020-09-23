@@ -30,16 +30,16 @@
         </div><!-- menu-item -->
       </a><!-- br-menu-link -->
       <ul class="br-menu-sub nav flex-column">
-        <li class="nav-item"><a href="{{url('activation/admin/newreq')}}" class="nav-link {{Request::is('activation/admin/newreq')?'active':''}}">New Request</a></li>
-        <li class="nav-item"><a href="{{url('activation/admin/historytodayactive')}}" class="nav-link {{Request::is('activation/admin/historytodayactive')?'active':''}}">Today's Activation History</a></li>
-        <li class="nav-item"><a href="{{url('activation/admin/historyallactive')}}" class="nav-link {{Request::is('activation/admin/historyallactive')?'active':''}}">Activation Details</a></li>
+        {{-- <li class="nav-item"><a href="{{url('activation/admin/newreq')}}" class="nav-link {{Request::is('activation/admin/newreq')?'active':''}}">New Request</a></li>
+        <li class="nav-item"><a href="{{url('activation/admin/historytodayactive')}}" class="nav-link {{Request::is('activation/admin/historytodayactive')?'active':''}}">Today's Activation History</a></li> --}}
+        <li class="nav-item"><a href="{{url('activation/admin/historyallactive')}}" class="nav-link {{Request::is('activation/admin/historyallactive')?'active':''}}">Activation History</a></li>
       </ul>
-      <a href="{{url('/admin/transactionwallet')}}" class="br-menu-link {{Request::is('admin/transactionwallet')?'active':''}}">
+      {{-- <a href="{{url('/admin/transactionwallet')}}" class="br-menu-link {{Request::is('admin/transactionwallet')?'active':''}}">
         <div class="br-menu-item">
           <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
           <span class="menu-item-label">Wallet Transaction</span>
         </div>
-      </a>
+      </a> --}}
       <a href="#" class="br-menu-link">
         <div class="br-menu-item">
           <i class="menu-item-icon ion-ios-redo-outline tx-24"></i>
@@ -52,7 +52,7 @@
         <li class="nav-item"><a href="{{url('/admin/withdrawalconfirm')}}" class="nav-link">Confirm Withdrawal</a></li>
         <li class="nav-item"><a href="{{url('admin/withdrawalreject')}}" class="nav-link">Reject Withdrawal</a></li>
       </ul>
-      <a href="#" class="br-menu-link">
+      {{-- <a href="#" class="br-menu-link">
         <div class="br-menu-item">
           <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
           <span class="menu-item-label">KYC</span>
@@ -63,7 +63,7 @@
         <li class="nav-item"><a href="{{url('/admin/kycrequest')}}" class="nav-link">KYC Requests</a></li>
         <li class="nav-item"><a href="{{url('/admin/kycapproved')}}" class="nav-link">KYC Approved List</a></li>
         <li class="nav-item"><a href="{{url('/admin/kycunavailable')}}" class="nav-link">KYC Unavailable List</a></li>
-      </ul>
+      </ul> --}}
       <a href="#" class="br-menu-link">
         <div class="br-menu-item">
           <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
@@ -72,9 +72,10 @@
         </div><!-- menu-item -->
       </a><!-- br-menu-link -->
       <ul class="br-menu-sub nav flex-column">
-        <li class="nav-item"><a href="{{url('/admin/historydirectincome')}}" class="nav-link">Direct Income History</a></li>
-        <li class="nav-item"><a href="{{url('/admin/historybinaryincome')}}" class="nav-link">Binary Income History</a></li>
-        <li class="nav-item"><a href="{{url('/admin/historypointincome')}}" class="nav-link">Point Income History</a></li>
+        <li class="nav-item"><a href="{{url('/admin/historydirectincome')}}" class="nav-link">Fast Start Income History</a></li>
+        <li class="nav-item"><a href="{{url('/admin/historybinaryincome')}}" class="nav-link">Pass Up Income History</a></li>
+        <li class="nav-item"><a href="{{url('/admin/historypointincome')}}" class="nav-link">Leadership Bonus History</a></li>
+        <li class="nav-item"><a href="{{url('/admin/historypointincome')}}" class="nav-link">Team Size Bonus History</a></li>
       </ul>
       <a href="{{url('/admin/historytransactions')}}" class="br-menu-link">
         <div class="br-menu-item">
@@ -82,20 +83,20 @@
           <span class="menu-item-label">Transaction History</span>
         </div>
       </a>
-      <a href="{{url('/admin/historyadmintransaction')}}" class="br-menu-link">
+      {{-- <a href="{{url('/admin/historyadmintransaction')}}" class="br-menu-link">
         <div class="br-menu-item">
           <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
           <span class="menu-item-label">Admin Transaction</span>
         </div>
-      </a>
-      <a href="#" class="br-menu-link">
+      </a> --}}
+      {{-- <a href="#" class="br-menu-link">
         <div class="br-menu-item">
           <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
           <span class="menu-item-label">User Wallet Transfer</span>
           <i class="menu-item-arrow fa fa-angle-down"></i>
         </div><!-- menu-item -->
-      </a><!-- br-menu-link -->
-      <ul class="br-menu-sub nav flex-column">
+      </a><!-- br-menu-link --> --}}
+      {{-- <ul class="br-menu-sub nav flex-column">
         <li class="nav-item"><a href="{{url('/admin/transfertotheruser')}}" class="nav-link">To Other User</a></li>
         <li class="nav-item"><a href="{{url('/admin/transfertearningtomain')}}" class="nav-link">Earning To Main Wallet</a></li>
       </ul>
@@ -104,22 +105,22 @@
           <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
           <span class="menu-item-label">CMC Closing Details</span>
         </div>
-      </a>
+      </a> --}}
       <a href="#" class="br-menu-link">
         <div class="br-menu-item">
           <i class="menu-item-icon icon ion-ios-navigate-outline tx-24"></i>
-          <span class="menu-item-label">MLM Settings</span>
+          <span class="menu-item-label">Affiliate Settings</span>
           <i class="menu-item-arrow fa fa-angle-down"></i>
         </div><!-- menu-item -->
       </a><!-- br-menu-link -->
       <ul class="br-menu-sub nav flex-column">
         <li class="nav-item"><a href="{{url('/admin/settingswithdrawal')}}" class="nav-link">Withdrawal Charge</a></li>
-        <li class="nav-item"><a href="{{url('/admin/settingsmintransferamt')}}" class="nav-link">Minimum Amount Transfer</a></li>
-        <li class="nav-item"><a href="{{url('/admin/settingspointwalletuse')}}" class="nav-link">Point Wallet Use Settings</a></li>
+        {{-- <li class="nav-item"><a href="{{url('/admin/settingsmintransferamt')}}" class="nav-link">Minimum Amount Transfer</a></li> --}}
+        {{-- <li class="nav-item"><a href="{{url('/admin/settingspointwalletuse')}}" class="nav-link">Point Wallet Use Settings</a></li>
         <li class="nav-item"><a href="{{url('/admin/settingsautopool')}}" class="nav-link">Autopool Settings</a></li>
-        <li class="nav-item"><a href="{{url('/admin/settingscmc')}}" class="nav-link">CMC Settings</a></li>
-        <li class="nav-item"><a href="{{url('/admin/settingsactivation')}}" class="nav-link">Activation Settings</a></li>
-        <li class="nav-item"><a href="{{url('/admin/settingsbinaryupgrade')}}" class="nav-link">Binary Upgrade Setting</a></li>
+        <li class="nav-item"><a href="{{url('/admin/settingscmc')}}" class="nav-link">CMC Settings</a></li> --}}
+        <li class="nav-item"><a href="{{url('/admin/settingsactivation')}}" class="nav-link">Membership Settings</a></li>
+        {{-- <li class="nav-item"><a href="{{url('/admin/settingsbinaryupgrade')}}" class="nav-link">Binary Upgrade Setting</a></li> --}}
       </ul>
       <a href="#" class="br-menu-link">
         <div class="br-menu-item">
@@ -160,7 +161,7 @@
     </div><!-- br-header-left -->
     <div class="br-header-right">
       <nav class="nav">
-        <div class="dropdown">
+        {{-- <div class="dropdown">
           <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
             <i class="icon ion-ios-email-outline tx-24"></i>
             <!-- start: if statement -->
@@ -229,8 +230,8 @@
               </div>
             </div><!-- media-list -->
           </div><!-- dropdown-menu -->
-        </div><!-- dropdown -->
-        <div class="dropdown">
+        </div><!-- dropdown --> --}}
+        {{-- <div class="dropdown">
           <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
             <i class="icon ion-ios-bell-outline tx-24"></i>
             <!-- start: if statement -->
@@ -287,8 +288,8 @@
               </div>
             </div><!-- media-list -->
           </div><!-- dropdown-menu -->
-        </div><!-- dropdown -->
-        <div class="dropdown">
+        </div><!-- dropdown --> --}}
+        {{-- <div class="dropdown">
           <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
             <span class="logged-name hidden-md-down">Katherine</span>
             <img src="http://via.placeholder.com/64x64" class="wd-32 rounded-circle" alt="">
@@ -304,7 +305,7 @@
               <li><a href=""><i class="icon ion-power"></i> Sign Out</a></li>
             </ul>
           </div><!-- dropdown-menu -->
-        </div><!-- dropdown -->
+        </div><!-- dropdown --> --}}
       </nav>
      <!-- navicon-right -->
     </div><!-- br-header-right -->

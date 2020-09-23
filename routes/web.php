@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\geturldata;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 // User Routing
 Route::view('/', 'login');
+Route::get('/fetchorder','fetchorder@insert');
+Route::get('/function','geturldata@add');
 Route::view('/ewallets','user.ewallet');
 Route::view('/hwallets','user.hwallet');
 Route::view('/hwalletfaststart','user.hwalletfaststart');

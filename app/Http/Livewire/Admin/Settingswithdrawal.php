@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\DB;
 class Settingswithdrawal extends Component
 {
 
-    public $withd_charg,$self_transfer_charge;
+    public $withd_charg,$minimum_withdrawal;
     public function mount(Globalsettings $data){
 
       $this->withd_charg=$data->global_settings['withdrawal_charge'];
-      $this->self_transfer_charge=$data->global_settings['fund_trans_charge_self'];
+      $this->minimum_withdrawal=$data->global_settings['minimum_withdrawal'];
        
     }
 
@@ -27,7 +27,7 @@ class Settingswithdrawal extends Component
     {
         $this->validateOnly($field, [
             'withd_charg' => 'required|numeric|min:1',
-            'self_transfer_charge' => 'required|numeric|min:1',
+            'minimum_withdrawal' => 'required|numeric|min:1',
       
         ]);
     }
@@ -57,13 +57,13 @@ class Settingswithdrawal extends Component
     public function self_transfer(){
 
         $validatedData = $this->validate([
-            'self_transfer_charge' => 'required|numeric|min:1',
+            'minimum_withdrawal' => 'required|numeric|min:1',
         ]);
 
         $Update=DB::table('settings')
-        ->where('title','fund_trans_charge_self')
+        ->where('title','minimum_withdrawal')
         ->update([
-            'content' => $this->self_transfer_charge
+            'content' => $this->minimum_withdrawal
 
         ]);
         if($Update){

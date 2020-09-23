@@ -215,12 +215,12 @@
                             </form>
                             <br>
                             <br>
-                            <div class="p-t-15" style="text-align: center;">
+                            {{-- <div class="p-t-15" style="text-align: center;">
 	                            <p>Don't have an account? <a style="text-decoration: none;color: #387B1C ;" href="{{ url('/user/register') }}"><strong>Register Now</strong></a></p>
 	                        </div>
-	                        <div class="p-t-15" style="text-align: center;">
-	                            <p id="backtoblog"><a style="text-decoration: none;color: #387B1C ;" href="{{url('/user/forget')}}"><strong>Forget Password</strong></a></p>
-	                        </div>
+	                        <div class="p-t-15" style="text-align: center;"> --}}
+	                            {{-- <p id="backtoblog"><a style="text-decoration: none;color: #387B1C ;" href="{{url('/user/forget')}}"><strong>Forget Password</strong></a></p>
+	                        </div> --}}
                         </div>
                        
                     </div>

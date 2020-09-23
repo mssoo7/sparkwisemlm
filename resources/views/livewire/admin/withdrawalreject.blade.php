@@ -2,34 +2,87 @@
     <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
         <h4 class="tx-gray-800 mg-b-5">Rejected Withdrawal</h4>
       </div>
-
-       <div class="br-pagebody">
+      <div class="br-pagebody">
         <div class="br-section-wrapper">
           <div class="table-wrapper">
-            <table id="datatable1" class="table display responsive">
-              <thead>
-                <tr>
-                <th>#</th>
-                  <th>Transaction ID</th>
-                  <th>User</th>
-                  <th>Amount</th>
-                  <th>Rejected Date</th>
-                  <th>Remarks</th>
+            <div class="row mb-4">
+              <div class="col form-inline">
+                  Per Page: &nbsp;
+                  <select wire:model="perPage" class="form-control">
+                      <option>5</option>
+                      <option>10</option>
+                      <option>15</option>
+                      <option>25</option>
+                      <option>50</option>
+                      <option>100</option>
+                  </select>
+              </div>
+      
+              
+              <div class="col">
+                <div style="width: 45%; float:right;">
+                  <input wire:model.debounce.300ms="search" class="form-control" type="text" placeholder="Search...">
+                </div>
+              </div>
+      
+          </div>
+
+            <table class="table table-bordered table-responsive">
+              <thead class="thead-dark text-light">
+                <tr class="font-weight-bold">
+                  <td>#</td>
+                  <td wire:click="sortBy('user_name')">User ID & Name
+                    @include('partials.sort-icon',['field'=>'user_name'])
+                  </td>
+                  <td wire:click="sortBy('req_amt')">Amount
+                    @include('partials.sort-icon',['field'=>'req_amt'])
+                  </td>
+                  <td wire:click="sortBy('date')">Request Date
+                    @include('partials.sort-icon',['field'=>'date'])
+                  </td>
+                  <td wire:click="sortBy('payment_date')">Rejected Date
+                    @include('partials.sort-icon',['field'=>'payment_date'])
+                  </td>
+                  <td wire:click="sortBy('remark')">Remark
+                    @include('partials.sort-icon',['field'=>'remark'])
+                  </td>
                 </tr>
               </thead>
               <tbody>
+              @php
+                  $i=1
+              @endphp
+              @forelse ($rejected as $value)
+        
                 <tr>
-                 <td>1</td>
-                 <td>UMNS2121512</td>
-                  <td>BH20202</td>
-                  <td>5000</td>
-                  <td>02/09/2020</td>
-                  <td>some reamrk here</td>
+                  <td>{{$i++}}</td>
+                  <td>{{$value->user_name}}<br>{{$value->user_id}}</td>
+                  <td>{{$value->req_amt}}</td>
+                  <td>{{$value->date}}</td>
+                  <td>{{$value->payment_date}}</td>
+                  <td>{{$value->remark}}</td>
                 </tr>
-              </tbody>
+                @empty
+                  <tr>
+                    <td colspan="6" class="text-center text-danger">No Records Here..</td>
+                    </tr>
+                
+              @endforelse
+            </tbody>  
             </table>
+            <div>
+
+              <p>
+                  Showing {{$rejected->firstItem()}} to {{$rejected->lastItem()}} out of {{$rejected->total()}} items
+              </p>
+              <p>
+      
+                {{$rejected->links()}}
+              </p>
+          </div>
           </div>
           
         </div><!-- br-section-wrapper -->
       </div><!-- br-pagebody -->
+   
 </div>

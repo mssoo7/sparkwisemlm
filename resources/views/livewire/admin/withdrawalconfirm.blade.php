@@ -35,17 +35,17 @@
                   <td wire:click="sortBy('user_name')">User ID & Name
                     @include('partials.sort-icon',['field'=>'user_name'])
                   </td>
-                  <td wire:click="sortBy('activation_amount')">Activation Amt.
-                    @include('partials.sort-icon',['field'=>'activation_amount'])
+                  <td wire:click="sortBy('req_amt')">Amount
+                    @include('partials.sort-icon',['field'=>'req_amt'])
                   </td>
-                  <td wire:click="sortBy('active_by_name')">Activate By
-                    @include('partials.sort-icon',['field'=>'active_by_name'])
+                  <td wire:click="sortBy('date')">Request Date
+                    @include('partials.sort-icon',['field'=>'date'])
                   </td>
-                  <td wire:click="sortBy('active_date')">Activate Date
-                    @include('partials.sort-icon',['field'=>'active_date'])
+                  <td wire:click="sortBy('payment_date')">Approved Date
+                    @include('partials.sort-icon',['field'=>'payment_date'])
                   </td>
-                  <td wire:click="sortBy('wallet_type')">Wallet Type
-                    @include('partials.sort-icon',['field'=>'wallet_type'])
+                  <td wire:click="sortBy('remark')">Remark
+                    @include('partials.sort-icon',['field'=>'remark'])
                   </td>
                 </tr>
               </thead>
@@ -54,28 +54,32 @@
                   $i=1
                 
               @endphp
-              @foreach ($kyc as $value)
+              @forelse ($confirmed as $value)
         
                 <tr>
                   <td>{{$i++}}</td>
                   <td>{{$value->user_name}}<br>{{$value->user_id}}</td>
-                  <td>{{$value->activation_amount}}</td>
-                  <td>{{$value->active_by_name}}<br>{{$value->active_by_user}}</td>
-                  <td>{{$value->active_date}}</td>
-                  <td>{{$value->wallet_type}}</td>
+                  <td>{{$value->req_amt}}</td>
+                  <td>{{$value->date}}</td>
+                  <td>{{$value->payment_date}}</td>
+                  <td>{{$value->remark}}</td>
                 </tr>
+                @empty
+                  <tr>
+                    <td colspan="6" class="text-center text-danger">No Records Here..</td>
+                    </tr>
                 
-              @endforeach
+              @endforelse
             </tbody>  
             </table>
             <div>
 
               <p>
-                  Showing {{$active_user->firstItem()}} to {{$active_user->lastItem()}} out of {{$active_user->total()}} items
+                  Showing {{$confirmed->firstItem()}} to {{$confirmed->lastItem()}} out of {{$confirmed->total()}} items
               </p>
               <p>
       
-                {{$active_user->links()}}
+                {{$confirmed->links()}}
               </p>
           </div>
           </div>

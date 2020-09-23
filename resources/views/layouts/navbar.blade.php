@@ -29,7 +29,7 @@
                </a>
              </li>
           <!-- Account setting -->
-        <li class="nav-header">ACCOUNT SETTINGS</li>
+        {{-- <li class="nav-header">ACCOUNT SETTINGS</li>
         <li class="nav-item has-treeview">
           <span  class="nav-link text-white {{Request::is('account-setting/*') ? 'active' : ''}}">
             <i class="nav-icon fas fa-user-cog "></i>
@@ -58,7 +58,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
         <!-- Activate new user -->
         {{-- <li class="nav-header">USER ACTIVATION</li>
         <li class="nav-item has-treeview">

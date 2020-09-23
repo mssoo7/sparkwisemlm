@@ -20,11 +20,9 @@ class Hwallet extends Component
 
     
         $hWallet=DB::table('user')->where('id',$id)->select('hold_wallet')->get();
-            $this->h_wallet=$hWallet[0]->hold_wallet;
-       
-            
+            $this->h_wallet=$hWallet[0]->hold_wallet;  
 
-        $data['businessIncome']=DB::table('business_income')->where('userid',$id)->where(function ($q1){   
+        $data['businessIncome']=DB::table('walletTransaction')->where('userid',$id)->where(function ($q1){   
             $q1->where('wallet_type','H-Wallet')
             ->orWhere('trans_status',1);
                     })
@@ -32,7 +30,8 @@ class Hwallet extends Component
                      // this means SELECT * FROM `business_income` WHERE `userid`=$id AND (`wallet_type`="H-wallet" OR `trans_status`=1)"
                      
             ->where(function ($query) {
-            $query->where('amount','like','%'.$this->search.'%') 
+            $query->where('user_name','like','%'.$this->search.'%')
+            ->orwhere('amount','like','%'.$this->search.'%')  
             ->orWhere('Remark','like','%'.$this->search.'%')
             ->orWhere('date','like','%'.$this->search.'%');
             })

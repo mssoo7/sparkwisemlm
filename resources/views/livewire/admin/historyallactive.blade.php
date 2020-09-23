@@ -36,17 +36,14 @@
                   <td wire:click="sortBy('user_name')">User ID & Name
                     @include('partials.sort-icon',['field'=>'user_name'])
                   </td>
-                  <td wire:click="sortBy('activation_amount')">Activation Amt.
-                    @include('partials.sort-icon',['field'=>'activation_amount'])
+                  <td wire:click="sortBy('amount')">Activation Amt.
+                    @include('partials.sort-icon',['field'=>'amount'])
                   </td>
-                  <td wire:click="sortBy('active_by_name')">Activate By
-                    @include('partials.sort-icon',['field'=>'active_by_name'])
+                  <td wire:click="sortBy('sponser_name')">Referral By
+                    @include('partials.sort-icon',['field'=>'sponser_name'])
                   </td>
-                  <td wire:click="sortBy('active_date')">Activate Date
-                    @include('partials.sort-icon',['field'=>'active_date'])
-                  </td>
-                  <td wire:click="sortBy('wallet_type')">Wallet Type
-                    @include('partials.sort-icon',['field'=>'wallet_type'])
+                  <td wire:click="sortBy('date')">Activate Date
+                    @include('partials.sort-icon',['field'=>'date'])
                   </td>
                 </tr>
               </thead>
@@ -55,28 +52,30 @@
                   $i=1
                 
               @endphp
-              @foreach ($active_user as $value)
+              @forelse ($activation as $value)
         
                 <tr>
                   <td>{{$i++}}</td>
                   <td>{{$value->user_name}}<br>{{$value->user_id}}</td>
-                  <td>{{$value->activation_amount}}</td>
-                  <td>{{$value->active_by_name}}<br>{{$value->active_by_user}}</td>
-                  <td>{{$value->active_date}}</td>
-                  <td>{{$value->wallet_type}}</td>
+                  <td>{{$value->amount}}</td>
+                  <td>{{$value->sponser_name}}<br>{{$value->sponserid}}</td>
+                  <td>{{$value->date}}</td>
                 </tr>
-                
-              @endforeach
+                @empty
+                <tr>
+                  <td class="text-danger text-center" colspan='5'>No Records Found..</td>
+                </tr>
+              @endforelse
             </tbody>  
             </table>
             <div>
 
               <p>
-                  Showing {{$active_user->firstItem()}} to {{$active_user->lastItem()}} out of {{$active_user->total()}} items
+                  Showing {{$activation->firstItem()}} to {{$activation->lastItem()}} out of {{$activation->total()}} items
               </p>
               <p>
       
-                {{$active_user->links()}}
+                {{$activation->links()}}
               </p>
           </div>
           </div>

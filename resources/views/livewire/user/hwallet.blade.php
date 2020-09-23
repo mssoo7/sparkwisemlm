@@ -93,6 +93,9 @@
 				  <thead class="thead-dark ">
 					<tr class="font-weight-bold">
 					  <th>#</th>
+					  <th wire:click="sortBy('user_name')">Income From
+						@include('partials.sort-icon',['field'=>'user_name'])
+					  </th>
 					  <th wire:click="sortBy('wallet_type')">IN Wallet
 						@include('partials.sort-icon',['field'=>'wallet_type'])
 					  </th>
@@ -119,6 +122,7 @@
 			
 					<tr class="@if($value->trans_status==0) bg-warning @else bg-success @endif">
 					  <td>{{$i++}}</td>
+					  <td>{{$value->user_name}}</td>
 					  <td>{{$value->wallet_type}}</td>
 					  <td>{{$value->amount}}</td>
 					  <td>@if($value->trans_status==0) Credit @else Debit @endif</td>
@@ -127,7 +131,7 @@
 					</tr>
 					@empty
 					<tr>
-						<td colspan="6" class="text-center text-danger">No Records Here..</td>
+						<td colspan="7" class="text-center text-danger">No Records Here..</td>
 					  </tr>
 					
 				  @endforelse

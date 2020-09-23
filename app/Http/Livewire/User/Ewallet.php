@@ -21,11 +21,13 @@ class Ewallet extends Component
         $eWallet=DB::table('user')->where('id',$id)->select('e_wallet')->get();
             $this->e_wallet=$eWallet[0]->e_wallet;
        
-        $data['businessIncome']=DB::table('business_income')->where('userid',$id)->where('wallet_type','E-Wallet')->where(function ($query) {
-            $query->where('amount','like','%'.$this->search.'%')
-            ->orWhere('Remark','like','%'.$this->search.'%')
-            ->orWhere('date','like','%'.$this->search.'%');
-            })
+        $data['businessIncome']=DB::table('walletTransaction')->where('userid',$id)->where('wallet_type','E-Wallet')
+            ->where(function ($query) {
+                $query->where('user_name','like','%'.$this->search.'%')
+                ->orwhere('amount','like','%'.$this->search.'%')  
+                ->orWhere('Remark','like','%'.$this->search.'%')
+                ->orWhere('date','like','%'.$this->search.'%');
+                })
             ->orderBy($this->sortBy,$this->sortDirection) 
             ->paginate($this->perPage);
 

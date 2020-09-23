@@ -6,17 +6,17 @@
       <div class="br-pagebody">
         <div class="br-section-wrapper">
 
-            <table class="table table-bordered text-center" style="background-color: rgb(52, 110, 52);">
+            <table class="table table-bordered text-center">
 
               <thead class="thead-dark text-light font-weight-bold">
                     <tr>
-                        <td colspan=2>Top Up Settings</td>
+                        <td colspan=2>Income Settings</td>
                     </tr>
               </thead>
                     <tbody>
                     <tr>
-                        <th class="text-light">
-                            ACCOUNT ACTIVATION AMOUNT IN RUPEE</th>
+                        <th class="font-weight-bold">
+                            FAST START INCOME</th>
                             @if (session()->has('message'))
                             <script>
                                 Swal.fire({
@@ -29,7 +29,7 @@
                         <td>
                             <div class="form-group">
                                 <div style="display: inline-flex !important;" class="input-group">
-                                    <span style="min-width: 50px" class="input-group-addon"><i class="fa {{$global_currency}}"></i></span>    
+                                    <span style="min-width: 50px" class="input-group-addon"><i class="fa fa-percent"></i></span>    
                                     <input type="number" class="form-control" wire:model='activation_amount'>
                                     <div class="input-group-append">
                                         <button type="button" wire:click='activationAmount' class="btn btn-danger">Update</button>
@@ -42,11 +42,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-light">POINT WALLET (TOP-UP ACTIVATION)</th>
+                        <th class="font-weight-bold">FRONTLINE INCOME</th>
                         <td>     
                             <div class="form-group">
                                     <div style="display: inline-flex !important;" class="input-group">
-                                        <span style="min-width: 50px" class="input-group-addon"><i class="fa {{$global_currency}}"></i></span>    
+                                        <span style="min-width: 50px" class="input-group-addon"><i class="fa fa-percent"></i></span>    
                                         <input type="number" class="form-control" wire:model='point_wallet_topup' step="0.01" >
                                         <div class="input-group-append">
                                             <button type="button" wire:click='pointWalletTopup' class="btn btn-danger">Update</button>
@@ -60,11 +60,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-light">SPONSOR INCOME (TOP-UP ACTIVATION)</th>
+                        <th class="font-weight-bold">PASS UP INCOME</th>
                         <td>     
                             <div class="form-group">
                                     <div style="display: inline-flex !important;" class="input-group">
-                                        <span style="min-width: 50px" class="input-group-addon"><i class="fa {{$global_currency}}"></i></span>    
+                                        <span style="min-width: 50px" class="input-group-addon"><i class="fa fa-percent"></i></span>    
                                         <input type="number" class="form-control" wire:model="sponsor_income_topup" step="1" >
                                         <div class="input-group-append">
                                             <button type="button"wire:click='sponsorIncomeTopup' class="btn btn-danger">Update</button>
@@ -72,17 +72,15 @@
                                     </div>
                                     @error('sponsor_income_topup') <span
                                     class="error badge  badge-danger">{{ $message }}</span> @enderror
-
                                 </div>
-                           
                         </td>
                     </tr>
-                    <tr>
-                        <th class="text-light">CMC Fund (TOP-UP ACTIVATION)</th>
+                    {{-- <tr>
+                        <th class="font-weight-bold">CMC Fund (TOP-UP ACTIVATION)</th>
                         <td>     
                             <div class="form-group">
                                     <div style="display: inline-flex !important;" class="input-group">
-                                        <span style="min-width: 50px" class="input-group-addon"><i class="fa {{$global_currency}}"></i></span>    
+                                        <span style="min-width: 50px" class="input-group-addon"><i class="fa fa-percent"></i></span>    
                                         <input type="number" class="form-control" wire:model="cmc_fund" step="1" >
                                         <div class="input-group-append">
                                             <button type="button" wire:click='cmcFund' class="btn btn-danger">Update</button>
@@ -94,7 +92,7 @@
                                 </div>
                            
                         </td>
-                    </tr>
+                    </tr> --}}
 
                 </tbody>
             </table>

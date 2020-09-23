@@ -50,12 +50,12 @@
       @endphp
       @forelse ($transact as $value)
 
-        <tr class="@if($value->wallet_type =='E-Wallet') bg-success @else bg-warning @endif ">
+        <tr class="@if($value->trans_type =='credit') bg-success @else bg-danger @endif ">
           <td>{{$i++}}</td>
           <td class="text-capitalize">{{str_replace("_"," ",$value->wallet_type)}}</td>
           <td>{{$value->amount}}</td>
           <td>{{$value->trans_type}}</td>
-          <td>{{$value->Remark}}</td>
+          <td>{{$value->Remark}}</td>  
           <td>{{date('M d, Y h:i A', strtotime($value->date))}}</td>
         </tr>
         @empty

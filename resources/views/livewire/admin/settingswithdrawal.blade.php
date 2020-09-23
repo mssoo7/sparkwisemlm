@@ -6,7 +6,7 @@
     <div class="br-pagebody">
         <div class="br-section-wrapper">
 
-            <table class="table table-bordered text-center" style="background-color: rgb(52, 110, 52);">
+            <table class="table table-bordered text-center">
 
                 <thead class="thead-dark text-light font-weight-bold">
                     <tr>
@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th class="text-light">Amount Withdrawal Charge</th>
+                        <th class="font-weight-bold">Amount Withdrawal Charge</th>
 
                         @if (session()->has('message'))
                         <script>
@@ -44,13 +44,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-light">Earning to main Wallet Transfer Charge</th>
+                        <th class="font-weight-bold">Minimum Withdrawal Amount</th>
                         <td>
                             <div class="form-group">
                                 <div style="display: inline-flex !important;" class="input-group">
                                     <span style="min-width: 50px" class="input-group-addon"><i
                                             class="fa fa-percent"></i></span>
-                                    <input type="number" class="form-control" wire:model="self_transfer_charge"
+                                    <input type="number" class="form-control" wire:model="minimum_withdrawal"
                                         step="0.01">
                                     <div class="input-group-append">
                                         <button type="button" wire:click='self_transfer' class="btn btn-danger">Update

@@ -18,7 +18,24 @@
                           <option>100</option>
                   </select>
               </div>
-      
+              @if (session()->has('success'))
+              <script>
+                  Swal.fire({
+                  icon: 'success',
+                  title: '{{session('success')}}'
+              });
+              </script>
+               @endif
+            
+               @if (session()->has('error'))
+               <script>
+                   Swal.fire({
+                   icon: 'error',
+                   title: '{{session('error')}}'
+               });
+               </script>
+            
+               @endif
               
               <div class="col">
                 <div style="width: 45%; float:right;">
@@ -30,9 +47,9 @@
             <table class="table table-bordered table-responsive">
               <thead class="thead-dark text-light">
                 <tr class="font-weight-bold">
-    
-                  <td wire:click="sortBy('name')" style="" scope="col">Name & User ID
-                    @include('partials.sort-icon',['field'=>'name'])
+                  <td>#</td>
+                  <td wire:click="sortBy('user_name')" style="" scope="col">Name & User ID
+                    @include('partials.sort-icon',['field'=>'user_name'])
     
                   </td>
           
@@ -49,20 +66,75 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($withdrawal_pending as $item)
+                @php
+                    $i=1
+                @endphp
+                @forelse ($withdrawal_pending as $item)
                 <tr>
-                  <td>{{$item->userid}} - {{$item->name}}</td>
+                  <td>{{$i++}}</td>
+                  <td>{{$item->user_id}} - {{$item->user_name}}</td>
                   <td>{{$item->date}}</td>
                   <td>{{$item->req_amt}}</td>
                   <td>
-                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" wire:click='viewDetails("{{$item->id}}")' data-target="#viewModal"><i class="fas fa-eye"></i> View </button></td>
+                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#viewModal{{$item->id}}"><i class="fas fa-eye"></i> View </button>
+
+                    {{-- model --}}
+                    <div class="modal fade" id="viewModal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Withdrawl Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>User Details</th>
+                                    <th>Withdrawl Details</th> 
+                                  </tr>
+                                </thead> 
+                                <tbody>
+                                  <tr>
+                                    <td>User ID: <b>{{$item->user_id}}</b><br>
+                                      User Name: <b>{{$item->user_name}}</b><br>
+                                      User Mobile: <b>{{$item->user_mobile}}</b><br>User Email: <b>{{$item->user_email}}</b></td>
+                                    <td>Request Money: <b>{{$item->req_amt}}</b><br>Deduction: <b>{{$item->charge}}</b><br>
+                                      Given Money: <b>{{$item->amount}}</b></td>
+                                  </tr>
+                                </tbody>                          
+                                 </table> 
+                              </div>
+                              </div> 
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <label class="form-group"><strong>Remarks:</strong></label>
+                                   <textarea class="form-control" wire:model.lazy="remark" rows="3" required></textarea> 
+                                </div>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" wire:click="approved('{{$item->id}}','{{$item->userid}}','{{$item->req_amt}}')" class="btn btn-primary">Approved</button>&nbsp;&nbsp;
+                            <button type="button" wire:click="rejected('{{$item->id}}','{{$item->userid}}','{{$item->req_amt}}')" class="btn btn-danger">Reject</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {{-- /model --}}
+                  </td> 
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                  <td colspan="5" class="text-center text-danger">No Records Here..</td>
+                  </tr>
+                @endforelse    
               </tbody>
             </table>
-    
             <div>
-    
               <p>
                   Showing {{$withdrawal_pending->firstItem()}} to {{$withdrawal_pending->lastItem()}} out of {{$withdrawal_pending->total()}} items
               </p>
@@ -76,54 +148,7 @@
 {{-- for modal test --}}
 
 <!-- Modal -->
-<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-12">
-            <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>User Id</th>
-                <th>Name</th>
-                <th>Transfer Mode</th>
-                
-              </tr>
-            </thead> 
-            <tbody>
-              <tr>
-                <td>{{$form_id}}</td>
-                <td></td>
-                <td></td>
-                
-              </tr>
-            </tbody>                          
-             </table> 
-            
-          </div>
-          </div> 
-          <div class="row">
-            <div class="col-sm-12">
-              <label class="form-group"><strong>Remarks:</strong></label>
-               <textarea class="form-control" name="remark" rows="5" required></textarea> 
-            </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <input type="hidden" name="id" value="">
-        <button type="submit" id="send" name="send" class="btn btn-primary">Approved</button>&nbsp;&nbsp;
-        <button type="submit" id="cancel" name="cancel" class="btn btn-danger">Reject</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 {{-- end test --}}
 

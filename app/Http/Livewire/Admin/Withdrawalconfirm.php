@@ -9,7 +9,7 @@ class Withdrawalconfirm extends Component
 {
     use WithPagination;
 
-    public $sortBy = 'name';
+    public $sortBy = 'user_name';
 
     public $sortDirection = 'asc';
     public $perPage = 10;
@@ -17,16 +17,16 @@ class Withdrawalconfirm extends Component
 
     public function render()
     {
-        $data['kyc']=DB::table('user')
-        ->where('kyc_status','=',1)
+        $data['confirmed']=DB::table('withdrawal_table')
+        ->where('status','Closed')
         ->where(function ($query) {
-        $query->where('name','like','%'.$this->search.'%')
-        ->orWhere('userid','like','%'.$this->search.'%')
-        ->orWhere('mobile','like','%'.$this->search.'%')
-        ->orWhere('join_date','like','%'.$this->search.'%')
-        ->orWhere('status','like','%'.$this->search.'%');
+        $query->where('user_name','like','%'.$this->search.'%')
+        ->orWhere('user_id','like','%'.$this->search.'%')
+        ->orWhere('req_amt','like','%'.$this->search.'%')
+        ->orWhere('date','like','%'.$this->search.'%')
+        ->orWhere('payment_date','like','%'.$this->search.'%')
+        ->orWhere('remark','like','%'.$this->search.'%');
         }) 
-        ->select('userid','name','mobile','join_date','status')
         ->orderBy($this->sortBy,$this->sortDirection)->paginate($this->perPage);
         return view('livewire.admin.withdrawalconfirm',$data);
     }

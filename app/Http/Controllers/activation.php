@@ -21,16 +21,14 @@ class activation extends Controller
        $validity_days=30;
        $extra_days=5;
        $holding_validity=90;
-       $membership_days=$validity_days+$extra_days;
+    //    $membership_days=$validity_days+$extra_days;
     
        $userCheck=DB::table('user')->where('email',$email)
        ->orwhere('mobile',$mobile)->exists();
 
        if($userCheck){
            
-        DB::beginTransaction();
-        try {
-
+        
         // Getting User All Details
         $getID=DB::table('user')->where('email',$email)->orwhere('mobile',$mobile)->select('id','index_no','sponsor_id','renew_status','hold_wallet','holding_status','e_wallet','mebership_days')->get();
 
@@ -81,29 +79,24 @@ class activation extends Controller
                     $while_status=true;
                 }
                 elseif($last_no == $index_no){  // 20 %
-
                     // calling comission20 function herer..
 
                     $this->comission20($userid,$sponser,$grandParentID,$order_no,$amount,$renew_status,$mebership_days,$validity_days,$holding_status,$holding_wallet,$granParentEwallet,$grandParenstatus,$Ewallet,$grantParentHoldStatus,$grandParentHoldWallet,$holding_validity);
                 }
                 elseif($last_no > $index_no){ // 30%
-
             // calling comission30 function herer..
 
                     $this->comission30($userid,$sponser,$order_no,$amount,$renew_status,$mebership_days,$validity_days,$holding_status,$holding_wallet,$sponserEwallet,$sponserStatus,$Ewallet,$sponserHoldStatus,$sponserHoldWallet,$holding_validity);
             }
          }
-
             }
             else{
                 if(in_array($index_no,$index_array)){ // 20%
-
                     // calling comission20 function herer..
 
                     $this->comission20($userid,$sponser,$grandParentID,$order_no,$amount,$renew_status,$mebership_days,$validity_days,$holding_status,$holding_wallet,$granParentEwallet,$grandParenstatus,$Ewallet,$grantParentHoldStatus,$grandParentHoldWallet,$holding_validity);
 
                 }else{ // 30%
-
                      // calling comission30 function herer..
 
                 $this->comission30($userid,$sponser,$order_no,$amount,$renew_status,$mebership_days,$validity_days,$holding_status,$holding_wallet,$sponserEwallet,$sponserStatus,$Ewallet,$sponserHoldStatus,$sponserHoldWallet,$holding_validity); 
@@ -111,18 +104,6 @@ class activation extends Controller
             }
  
         }
-
-       DB::commit();
-
-     
-       session()->flash('Renewmsg',"Succssfully Renewed");
-
-   } catch (\Exception $e) {
-       DB::rollback();
-
-       session()->flash('newmsg',"Somthings went Wrong!");
-   }
-    
     }
 
 // user Acticvation
@@ -155,20 +136,42 @@ class activation extends Controller
         $getLastID=DB::table('user')->select('id')->orderByDesc('id')->limit(1)->get();
 
            $lastID=$getLastID[0]->id;
-
-            $id=DB::table('user')->insertGetId([
+         $user_id= $userCode.$year.($lastID+1);
+      $id= DB::table('user')->insertGetId([
 
                 'name' => $name,
                 'mobile' => $mobile,
                 'email' => $email,
                 'sponsor_id' => $sponser,
-                'userid' => $userCode.$year.($lastID+1),
+                'userid' =>$user_id,
                 'index_no' => $indexNo,
                 'join_date' => $date,
-                'mebership_days' => $membership_days,
+                'mebership_days' => $validity_days,
              
             ]);
 
+        //     $getUser=DB::table('user')->where('id',$id)->select('renew_status','e_wallet','hold_wallet','mebership_days','holding_status')->get();
+        //     $userid=$getUser[0]->id;
+        //     $renew_status=$getUser[0]->renew_status;
+        //     $mebership_days=$getUser[0]->mebership_days;
+        //     $holding_status=$getUser[0]->holding_status;
+        //      $holding_wallet=$getUser[0]->hold_wallet;
+        //      $Ewallet=$getUser[0]->e_wallet;
+
+
+        //       //Getting sponser All Details
+        // $getSponser=DB::table('user')->where('id',$sponser)->select('renew_status','e_wallet','hold_wallet','sponsor_id','holding_status')->get();
+        // $sponserStatus=$getSponser[0]->renew_status;
+        // $sponserEwallet=$getSponser[0]->e_wallet;
+        // $sponserHoldWallet=$getSponser[0]->hold_wallet;
+        // $sponserHoldStatus=$getSponser[0]->holding_status;
+        // $grandParentID=$getSponser[0]->sponsor_id;
+
+        
+
+        //  dd($getUser,$getSponser);
+
+        // $this->comission30($userid,$sponser,1,$amount,$renew_status,$mebership_days,$validity_days,$holding_status,$holding_wallet,$sponserEwallet,$sponserStatus,$Ewallet,$sponserHoldStatus,$sponserHoldWallet,$holding_validity); 
         if($id>=1){
 
         $comissoin=$amount*30/100;
@@ -187,7 +190,6 @@ class activation extends Controller
                 
             }
             if($insertShoppingID > 0){
-
                 $checkSponerStatus=DB::table('user')->where('id',$sponser)->select('renew_status','e_wallet','hold_wallet','holding_status')->get();
 
                 foreach($checkSponerStatus as $status){
@@ -206,6 +208,7 @@ class activation extends Controller
 
                             DB::table('business_income')->insert([
                                 'userid'=>$sponser,
+                                'trans_for'=>$id,
                                 'amount'=>$comissoin,
                                 'wallet_type'=>"E-Wallet",
                                 'date'=>date('Y-m-d h:i:s'),
@@ -262,17 +265,16 @@ class activation extends Controller
 
             session()->flash('newmsg',"Somthings went Wrong!");
         }
-        
         }
-
      return redirect('/activation'); 
      
     }
 
 // define function for 30% comission 
     public function comission30($userid,$sponser,$order_no,$amount,$renew_status,$mebership_days,$validity_days,$holding_status,$holding_wallet,$sponserEwallet,$sponserStatus,$Ewallet,$sponserHoldStatus,$sponserHoldWallet,$holding_validity) {
+        DB::beginTransaction();
+        try {
         $insertShoppingID=DB::table('shoping_income')->insertGetId([
-
             'userid'=>$userid,
             'sponser_id' =>$sponser,
             'under_team_id' =>$sponser,
@@ -281,25 +283,19 @@ class activation extends Controller
             'comission' => $amount*(30/100),
             'date' =>date('Y-m-d h:i:s')
         ]);
-
-        DB::table('user')->where('id',$userid)->update([
-                
+        DB::table('user')->where('id',$userid)->update([   
             'under_team_id' =>$sponser
         ]);
+        if($insertShoppingID > 0){
 
-if($insertShoppingID > 0){
-
-    if($renew_status == 0){
-        DB::table('user')->where('id',$userid)->update([
-
-            'mebership_days'=>$mebership_days+$validity_days,
-       
+            if($renew_status == 0){
+                DB::table('user')->where('id',$userid)->update([
+                'mebership_days'=>$mebership_days+$validity_days,
            ]);
-
-        if($holding_status==1){
-
-            DB::table('business_income')->insert([
+            if($holding_status==1){
+                DB::table('business_income')->insert([
                 'userid'=>$userid,
+                'trans_for'=>$userid,
                 'amount'=>$holding_wallet,
                 'wallet_type'=>"E-Wallet",
                 'date'=>date('Y-m-d h:i:s'),
@@ -307,9 +303,7 @@ if($insertShoppingID > 0){
                 'trans_status'=>1,
                 'Remark' =>"Transfer H-Wallet To E-Wallet"
             ]);
-
-            DB::table('user')->where('id',$userid)->update([
-
+                DB::table('user')->where('id',$userid)->update([
                 'e_wallet'=>$Ewallet+$holding_wallet,
                 'hold_wallet' =>0,
                 'holding_status'=>0,
@@ -318,83 +312,72 @@ if($insertShoppingID > 0){
             ]);
         }
         else{
-
             DB::table('user')->where('id',$userid)->update([
-
             'renew_status' =>1,
              'mebership_days'=>$mebership_days+$validity_days
-              
             ]);
-
         }
     }
             else{
-
+                // if($order_no>1){
                 DB::table('user')->where('id',$userid)->update([
-
                  'mebership_days'=>$mebership_days+$validity_days
-                  
                 ]);
+            // }
             }
         if($sponserStatus == 1){
-
             DB::table('user')->where('id',$sponser)->update([
-
                 'e_wallet'=>$sponserEwallet+($amount*(30/100))
             ]);
-
             DB::table('business_income')->insert([
                 'userid'=>$sponser,
+                'trans_for'=>$userid,
                 'amount'=>$amount*(30/100),
                 'wallet_type'=>"E-Wallet",
                 'date'=>date('Y-m-d h:i:s'),
-                'trans_type'=>'Credit',
+                'trans_type'=>'Credit',           
                 'Remark'=>"Pass Up Income"
             ]);
-
             DB::table('shoping_income')->where('id',$insertShoppingID)->update([
                 'wallet_type'=>'e_wallet'
                     ]);
-
-
         }else{
-
             DB::table('user')->where('id',$sponser)->update([
-
                 'hold_wallet'=>$sponserHoldWallet+($amount*(30/100))
-
             ]);
-
             if($sponserHoldStatus==0){
-
                 DB::table('user')->where('id',$sponser)->update([
                     'holding_status'=>1,
                     'hold_wallet_days'=>$holding_validity
-
                 ]);
-
-
             }
             DB::table('business_income')->insert([
                 'userid'=>$sponser,
+                'trans_for'=>$userid,
                 'amount'=>$amount*(30/100),
                 'wallet_type'=>"H-Wallet",
                 'date'=>date('Y-m-d h:i:s'),
                 'trans_type'=>'Credit',
                 'Remark'=>"Pass Up Income"
             ]);
-
-          
             DB::table('shoping_income')->where('id',$insertShoppingID)->update([
                 'wallet_type'=>'h_wallet'
                     ]);
-        }
-    }
+                }
+            }
+            DB::commit();
+            session()->flash('newmsg',"Renewed Succsessfully!");
+            } catch (\Exception $e) {
+            DB::rollback();
+            session()->flash('newmsg',"Somthings went Wrong!");
+            }
     }
 
     // define function for 20% comission
 
     public function comission20($userid,$sponser,$grandParentID,$order_no,$amount,$renew_status,$mebership_days,$validity_days,$holding_status,$holding_wallet,$granParentEwallet,$grandParenstatus,$Ewallet,$grantParentHoldStatus,$grandParentHoldWallet,$holding_validity){
+        DB::beginTransaction();
+        try {
         $insertShoppingID=DB::table('shoping_income')->insertGetId([
             'userid'=>$userid,
             'sponser_id' =>$sponser,
@@ -424,6 +407,7 @@ if($insertShoppingID > 0){
 
                     DB::table('business_income')->insert([
                         'userid'=>$userid,
+                        'trans_for'=>$userid,
                         'amount'=>$holding_wallet,
                         'wallet_type'=>"E-Wallet",
                         'date'=>date('Y-m-d h:i:s'),
@@ -472,10 +456,11 @@ if($insertShoppingID > 0){
 
             DB::table('business_income')->insert([
                 'userid'=>$grandParentID,
+                'trans_for'=>$userid,
                 'amount'=>$amount*(20/100),
                 'wallet_type'=>"E-Wallet",
                 'date'=>date('Y-m-d h:i:s'),
-                'trans_type'=>'Credit',
+                'trans_type'=>'Credit',         
                 'Remark'=>"Pass Up Income"
             ]);
 
@@ -504,6 +489,7 @@ if($insertShoppingID > 0){
             }
             DB::table('business_income')->insert([
                 'userid'=>$grandParentID,
+                'trans_for'=>$userid,
                 'amount'=>$amount*(20/100),
                 'wallet_type'=>"H-Wallet",
                 'date'=>date('Y-m-d h:i:s'),
@@ -515,8 +501,13 @@ if($insertShoppingID > 0){
             DB::table('shoping_income')->where('id',$insertShoppingID)->update([
                 'wallet_type'=>'h_wallet'
                     ]);
-
         }
+    }
+    DB::commit();
+    session()->flash('newmsg',"Renewed Succsessfully!");
+    } catch (\Exception $e) {
+    DB::rollback();
+    session()->flash('newmsg',"Somthings went Wrong!");
     }
     }
 

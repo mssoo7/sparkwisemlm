@@ -92,6 +92,9 @@
 			  <thead class="thead-dark ">
 				<tr class="font-weight-bold">
 				  <th>#</th>
+				  <th wire:click="sortBy('user_name')">Income From
+					@include('partials.sort-icon',['field'=>'user_name'])
+				  </th>
 				  <th wire:click="sortBy('wallet_type')">IN Wallet
 					@include('partials.sort-icon',['field'=>'wallet_type'])
 				  </th>
@@ -116,8 +119,9 @@
 			  @endphp
 			  @forelse ($businessIncome as $value)
 		
-				<tr class="@if($value->trans_type==0) bg-success @else bg-danger @endif">
+				<tr class="@if($value->trans_type=='credit') bg-success @else bg-danger @endif">
 				  <td>{{$i++}}</td>
+				  <td>{{$value->user_name}}</td>
 				  <td>{{$value->wallet_type}}</td>
 				  <td>{{$value->amount}}</td>
 				  <td>{{$value->trans_type}}</td>

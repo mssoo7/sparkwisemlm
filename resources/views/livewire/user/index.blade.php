@@ -127,14 +127,14 @@
 		  
 
 	</div>
-	<div class="row row-income m-3">
+	{{-- <div class="row row-income m-3"> --}}
 
 		<!-- main Wallet -->
-		<div class="col-lg-12 col-md-12 col-heading">
-			<h3 style="font-weight: 600">All Incomes</h3>
-		</div>
+		{{-- <div class="col-lg-12 col-md-12 col-heading">
+			<h3 style="font-weight: 600">All Incomes</h3> --}}
+		{{-- </div> --}}
 		<!-- Total Income -->
-		<div class="col-xl-4 col-md-6 mb-4">
+		{{-- <div class="col-xl-4 col-md-6 mb-4">
 			<div class="card border-left-primary shadow h-100 py-2" style="border-radius: 8px;
 		    border-left: .25rem solid #4e73df!important;">
 				<div class="card-body">
@@ -149,10 +149,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<!-- Direct Income -->
-		<div class="col-xl-4 col-md-6 mb-4">
+		{{-- <div class="col-xl-4 col-md-6 mb-4">
 			<div class="card border-left-primary shadow h-100 py-2" style="border-radius: 8px;
 		    border-left: .25rem solid #4e73df!important;">
 				<div class="card-body">
@@ -167,7 +167,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<!-- TOTAL BINARY INCOME -->
 		<!-- <div class="col-xl-4 col-md-6 mb-4">
@@ -188,7 +188,7 @@
 		</div> -->
 
 		<!-- TOTAL BINARY INCOME -->
-		<div class="col-xl-4 col-md-6 mb-4">
+		{{-- <div class="col-xl-4 col-md-6 mb-4">
 			<div class="card border-left-primary shadow h-100 py-2" style="border-radius: 8px;
 		    border-left: .25rem solid #4e73df!important;">
 				<div class="card-body">
@@ -204,10 +204,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<!-- AUTOPOOL INCOME-->
-		<div class="col-xl-4 col-md-6 mb-4">
+		{{-- <div class="col-xl-4 col-md-6 mb-4">
 			<div class="card border-left-primary shadow h-100 py-2" style="border-radius: 8px;
 		    border-left: .25rem solid #4e73df!important;">
 				<div class="card-body">
@@ -240,7 +240,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<!-- Binary Upgrade Income -->
 		<!-- <div class="col-xl-4 col-md-6 mb-4">
@@ -260,15 +260,15 @@
 		  </div>
 		</div> -->
 
-	</div>
+	{{-- </div>
 
 	<div class="row row-direct m-3">
 
 		<div class="col-lg-12 col-md-12 col-heading">
 			<h3 style="font-weight: 600">Team Members</h3>
-		</div>
+		</div> --}}
 		<!-- Total Direct -->
-		<div class="col-xl-4 col-md-6 mb-4">
+		{{-- <div class="col-xl-4 col-md-6 mb-4">
 			<div class="card border-left-primary shadow h-100 py-2" style="border-radius: 8px;
 		    border-left: .25rem solid #4e73df!important;">
 				<div class="card-body">
@@ -284,11 +284,11 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<!-- Total Direct / TOTAL TEAM-->
 
-		<div class="col-xl-4 col-md-6 mb-4">
+		{{-- <div class="col-xl-4 col-md-6 mb-4">
 			<div class="card border-left-primary shadow h-100 py-2" style="border-radius: 8px;
 		    border-left: .25rem solid #4e73df!important;">
 				<div class="card-body">
@@ -304,7 +304,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 	</div>
 
 </div>

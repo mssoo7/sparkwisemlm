@@ -18,14 +18,13 @@ class Historyallactive extends Component
         // $maindata=array();
         // $maindatafinal=array();
         // $count=1;
-        $data['active_user']=DB::table('active_history')
-        ->where(function ($query) {
+        $data['activation']=DB::table('shoppingincome')->where('order_no',1)->where(function ($query) {
             $query->where('user_name','like','%'.$this->search.'%')
             ->orWhere('user_id','like','%'.$this->search.'%')
-            ->orWhere('activation_amount','like','%'.$this->search.'%')
-            ->orWhere('active_date','like','%'.$this->search.'%')
-            ->orWhere('active_by_name','like','%'.$this->search.'%')
-            ->orWhere('active_by_user','like','%'.$this->search.'%');
+            ->orWhere('amount','like','%'.$this->search.'%')
+            ->orWhere('date','like','%'.$this->search.'%')
+            ->orWhere('sponser_name','like','%'.$this->search.'%')
+            ->orWhere('sponserid','like','%'.$this->search.'%');
             })
             ->orderBy($this->sortBy,$this->sortDirection) 
             ->paginate($this->perPage);

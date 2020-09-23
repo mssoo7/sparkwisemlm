@@ -29,8 +29,8 @@
         <ul class="navbar-nav ml-auto">
         {{-- new things --}}
         <div>
-          <a href="https://ecomnetwork.thenwguru.com/" target="_blank" class="nav-link">
-            <i class="nav-icon fas fa-store"><strong> STORE</strong></i>
+          <a href="#" target="_blank" class="nav-link">
+            <i class="nav-icon fas fa-store"><strong> Back To Shop</strong></i>
           </a>
         </div>
       
@@ -92,7 +92,7 @@
                 <img style="width: 50px; height: 50px;" src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
               </div> --}}
             </div>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+            {{-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
               <a class="dropdown-item" href="profile.php">
                 <i class="dropdown-icon fe fe-user"></i> Profile
               </a>
@@ -103,7 +103,7 @@
               <a class="dropdown-item" href="{{url('/user/logout')}}" onclick="return confirm('Do you really want to log out?')">
                 <i class="dropdown-icon fe fe-log-out"></i> Sign out
               </a>
-            </div>
+            </div> --}}
           </div>
         </ul>
       </nav>
