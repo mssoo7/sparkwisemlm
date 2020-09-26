@@ -35,27 +35,27 @@ Route::view('/user/forget', 'forget_password');
 Route::group(['prefix' => 'account-setting'], function () {
     Route::view('/user/profile','user.profile');
     Route::view('/user/kyc','user.kyc');
-    Route::view('/user/changepassword','user.changepassword');  
+    Route::view('/user/changepassword','user.changepassword');
 });
 
 Route::group(['prefix' => 'activate-user'], function () {
 Route::view('/user/useractivation','user.useractivation');
 Route::view('/user/historyactivation','user.historyactivation');
-    
+
 });
 
 Route::group(['prefix' => 'wallet-transfer'], function () {
     Route::group(['prefix' => 'to-other'], function () {
-    
+
         Route::view('/user/transferwalletother','user.transferwalletother');
         Route::view('/user/historywallettransaction','user.historywallettransaction');
     });
     Route::group(['prefix' => 'to-self'], function () {
-    
+
         Route::view('/user/transferfundtoself','user.transferfundtoself');
         Route::view('/user/historyfundtranstoself','user.historyfundtranstoself');
     });
-    
+
 });
 
 Route::group(['prefix' => 'withdrawl'], function () {
@@ -63,24 +63,24 @@ Route::group(['prefix' => 'withdrawl'], function () {
     Route::view('/user/withdrawlpending','user.withdrawlpending');
     Route::view('/user/withdrawlconfirm','user.withdrawlconfirm');
     Route::view('/user/withdrawlreject','user.withdrawlreject');
-    
+
 });
 Route::group(['prefix' => 'my-team'], function () {
 
     Route::view('/user/directactiveuser','user.directactiveuser');
     Route::view('/user/directinactiveuser','user.directinactiveuser');
     Route::view('/user/mydownline','user.mydownline');
-    
+
 });
 
 Route::group(['prefix' => 'tree'], function () {
-    Route::get('/user/{tree}/{id}','geturldata@tree'); 
+    Route::get('/user/{tree}/{id}','geturldata@tree');
 
 });
 
 Route::group(['prefix' => 'cmc-auto'], function () {
     Route::view('/user/autopool','user.autopool');
-    Route::view('/user/cmc','user.cmc'); 
+    Route::view('/user/cmc','user.cmc');
 });
 Route::group(['prefix' => 'income'], function () {
     Route::view('/user/incomebinary','user.incomebinary');
@@ -88,7 +88,7 @@ Route::group(['prefix' => 'income'], function () {
     Route::view('/user/incomeautopool','user.incomeautopool');
     Route::view('/user/incomepoint','user.incomepoint');
     Route::view('/user/incomecmc','user.incomecmc');
-    
+
 });
 
 Route::view('/user/historytransactionpage','user.historytransactionpage');
@@ -116,7 +116,7 @@ Route::group(['prefix' => 'activation'], function () {
     Route::view('/admin/newreq','admin.newreq');
     Route::view('/admin/historytodayactive','admin.historytodayactive');
     Route::view('/admin/historyallactive','admin.historyallactive');
-    
+
 });
 
 Route::view('/admin/transactionwallet','admin.transactionwallet');
@@ -144,6 +144,8 @@ Route::view('/admin/settingsbinaryupgrade','admin.settingsbinaryupgrade');
 Route::view('/admin/settingsupdatesystem','admin.settingsupdatesystem');
 Route::view('/admin/users','admin.users');
 Route::view('/admin/usersearch','admin.usersearch');
+
+Route::get('/admin/leadership-bonus','leadership@leadershipBonus');
 
 // End Admin Routing
 

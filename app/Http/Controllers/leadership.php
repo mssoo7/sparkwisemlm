@@ -12,6 +12,9 @@ class leadership extends Controller
     //     $getDate=DB::table('shoping_income')->where('userid',$id)->select(month('date'))
 
     // }
+    // return view('admin/leadership-bonus');
+        $bonus = DB::table('leadership_bonus')->get();
 
-
+        return view('admin.leadership-bonus',compact('bonus'));
+    }
 }

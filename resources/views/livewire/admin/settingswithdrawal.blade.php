@@ -24,7 +24,7 @@
                             title: '{{session('message')}}'
                         });
                     </script>
-                   
+
                     @endif
                         <td>
                             <div class="form-group">
@@ -51,7 +51,7 @@
                                     <span style="min-width: 50px" class="input-group-addon"><i
                                             class="fa fa-percent"></i></span>
                                     <input type="number" class="form-control" wire:model="minimum_withdrawal"
-                                        step="0.01">
+                                    step="0.01" value="{{$minimum_withdrawal}}">
                                     <div class="input-group-append">
                                         <button type="button" wire:click='self_transfer' class="btn btn-danger">Update
                                             Charge</button>
@@ -68,11 +68,11 @@
                         <th>Amount Transfer To other Wallet Charge
                         </th>
                         <td>
-                            
+
                             <form action="" method="post">
                                 <div class="form-group">
                                     <div style="display: inline-flex !important;" class="input-group mb-3">
-                                        <span style="min-width: 100px" class="input-group-addon"><i class="fa fa-percent"></i></span>    
+                                        <span style="min-width: 100px" class="input-group-addon"><i class="fa fa-percent"></i></span>
                                         <input type="text" class="form-control" name="fund_trans_charge_other" step="0.01" value="" required>
                                         <div class="input-group-append">
                                             <button type="submit"  class="btn btn-danger">Update Charge</button>
@@ -80,7 +80,7 @@
                                     </div>
 
                                 </div>
-                            </form> 
+                            </form>
                         </td>
                     </tr> -->
                 </tbody>

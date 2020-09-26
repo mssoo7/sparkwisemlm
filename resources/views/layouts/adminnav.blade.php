@@ -120,7 +120,7 @@
         <li class="nav-item"><a href="{{url('/admin/settingsautopool')}}" class="nav-link">Autopool Settings</a></li>
         <li class="nav-item"><a href="{{url('/admin/settingscmc')}}" class="nav-link">CMC Settings</a></li> --}}
         <li class="nav-item"><a href="{{url('/admin/settingsactivation')}}" class="nav-link">Membership Settings</a></li>
-        {{-- <li class="nav-item"><a href="{{url('/admin/settingsbinaryupgrade')}}" class="nav-link">Binary Upgrade Setting</a></li> --}}
+        <li class="nav-item"><a href="{{url('/admin/leadership-bonus')}}" class="nav-link">Leader Ship Bonus</a></li>
       </ul>
       <a href="#" class="br-menu-link">
         <div class="br-menu-item">
@@ -131,7 +131,7 @@
       </a><!-- br-menu-link -->
       <ul class="br-menu-sub nav flex-column">
         <li class="nav-item"><a href="{{url('/admin/settingsupdatesystem')}}" class="nav-link">Update System Settings</a></li>
-      
+
       </ul>
       <a href="#" class="br-menu-link">
         <div class="br-menu-item">
@@ -143,12 +143,12 @@
       <ul class="br-menu-sub nav flex-column">
         <li class="nav-item"><a href="{{url('/admin/users')}}" class="nav-link">All User</a></li>
         <li class="nav-item"><a href="{{url('/admin/usersearch')}}" class="nav-link">Search User</a></li>
-      
+
       </ul>
-      
+
     </div><!-- br-sideleft-menu -->
 
- 
+
 
 
     <br>
