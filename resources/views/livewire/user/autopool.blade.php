@@ -16,7 +16,6 @@
                   <tbody>
                       <tr>
                       <td>
-                        {{-- hello --}}
                       </td>
                       <td><i class="fa"></i></td>
                       <td></td>
